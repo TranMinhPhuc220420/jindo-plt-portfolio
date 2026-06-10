@@ -1,0 +1,127 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --plt-background: #fafafa;
+  --plt-surface: #ffffff;
+  --plt-surface-elevated: #f4f4f5;
+  --plt-border-subtle: rgba(0, 0, 0, 0.06);
+  --plt-border: rgba(0, 0, 0, 0.1);
+  --plt-overlay: rgba(0, 0, 0, 0.04);
+  --plt-overlay-hover: rgba(0, 0, 0, 0.06);
+  --plt-overlay-muted: rgba(0, 0, 0, 0.02);
+  --plt-glass: rgba(255, 255, 255, 0.72);
+  --plt-primary: #9333ea;
+  --plt-primary-deep: #7c3aed;
+  --plt-muted: #71717a;
+  --plt-foreground: #18181b;
+  --plt-chrome-bar: rgba(24, 24, 27, 0.08);
+  --plt-shadow-glow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  --plt-shadow-glow-sm: 0 2px 12px rgba(0, 0, 0, 0.06);
+  --plt-shadow-card: 0 1px 3px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.06);
+  --plt-selection-bg: rgba(147, 51, 234, 0.2);
+  --plt-selection-fg: #18181b;
+}
+
+.dark {
+  --plt-background: #0a0a0b;
+  --plt-surface: #111113;
+  --plt-surface-elevated: #1a1a1f;
+  --plt-border-subtle: rgba(255, 255, 255, 0.05);
+  --plt-border: rgba(255, 255, 255, 0.1);
+  --plt-overlay: rgba(255, 255, 255, 0.05);
+  --plt-overlay-hover: rgba(255, 255, 255, 0.1);
+  --plt-overlay-muted: rgba(255, 255, 255, 0.02);
+  --plt-glass: rgba(255, 255, 255, 0.05);
+  --plt-primary: #a855f7;
+  --plt-primary-deep: #7c3aed;
+  --plt-muted: #a1a1aa;
+  --plt-foreground: #f4f4f5;
+  --plt-chrome-bar: rgba(0, 0, 0, 0.4);
+  --plt-shadow-glow: 0 0 40px rgba(168, 85, 247, 0.35);
+  --plt-shadow-glow-sm: 0 0 20px rgba(168, 85, 247, 0.2);
+  --plt-shadow-card: 0 0 0 1px rgba(255, 255, 255, 0.08);
+  --plt-selection-bg: rgba(168, 85, 247, 0.3);
+  --plt-selection-fg: #fff;
+}
+
+@theme inline {
+  --color-background: var(--plt-background);
+  --color-surface: var(--plt-surface);
+  --color-surface-elevated: var(--plt-surface-elevated);
+  --color-border-subtle: var(--plt-border-subtle);
+  --color-border: var(--plt-border);
+  --color-overlay: var(--plt-overlay);
+  --color-overlay-hover: var(--plt-overlay-hover);
+  --color-overlay-muted: var(--plt-overlay-muted);
+  --color-glass: var(--plt-glass);
+  --color-primary: var(--plt-primary);
+  --color-primary-deep: var(--plt-primary-deep);
+  --color-muted: var(--plt-muted);
+  --color-foreground: var(--plt-foreground);
+  --color-chrome-bar: var(--plt-chrome-bar);
+
+  --shadow-glow: var(--plt-shadow-glow);
+  --shadow-glow-sm: var(--plt-shadow-glow-sm);
+  --shadow-card: var(--plt-shadow-card);
+
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-marquee-reverse: marquee-reverse 40s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color-scheme: light dark;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 200ms ease, color 200ms ease;
+  }
+
+  ::selection {
+    background-color: var(--plt-selection-bg);
+    color: var(--plt-selection-fg);
+  }
+}

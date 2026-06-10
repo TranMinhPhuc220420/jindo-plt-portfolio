@@ -1,0 +1,111 @@
+insert into public.products (
+  id, title, description, long_description, category, status, tags, gradient,
+  featured, layout, highlights, live_url, repo_url, sort_order
+) values
+(
+  'jindo-platform',
+  'Jindo Platform',
+  'Enterprise workflow orchestration for distributed teams.',
+  'A unified control plane for automating complex business workflows with real-time visibility, role-based access, and deep integrations across your stack.',
+  'Enterprise SaaS',
+  'live',
+  array['React', 'Node.js', 'PostgreSQL', 'Redis'],
+  'from-violet-600/40 via-purple-900/30 to-black',
+  true,
+  'featured',
+  array[
+    'Drag-and-drop workflow builder with version control',
+    'Real-time dashboards and SLA monitoring',
+    'SSO, audit logs, and granular permissions',
+    'Webhook & REST API for third-party integrations'
+  ],
+  '#',
+  '#',
+  1
+),
+(
+  'pulse-analytics',
+  'Pulse Analytics',
+  'Product intelligence dashboard with live cohort insights.',
+  'Turn raw product events into actionable growth metrics. Pulse surfaces retention, funnel drop-offs, and feature adoption in a single glass-dark interface.',
+  'Analytics',
+  'live',
+  array['Next.js', 'TypeScript', 'ClickHouse', 'Tailwind'],
+  'from-fuchsia-600/35 via-violet-900/25 to-black',
+  true,
+  'featured',
+  array[
+    'Sub-second queries on billions of events',
+    'Cohort and funnel analysis out of the box',
+    'Embeddable widgets for internal tools',
+    'Alerting rules with Slack & email delivery'
+  ],
+  '#',
+  '#',
+  2
+),
+(
+  'vault-cms',
+  'Vault CMS',
+  'Headless content platform for multi-brand publishing.',
+  null,
+  'Content',
+  'live',
+  array['React', 'GraphQL', 'Prisma'],
+  'from-indigo-600/35 via-slate-900/30 to-black',
+  false,
+  'wide',
+  array[]::text[],
+  '#',
+  null,
+  3
+),
+(
+  'nexus-chat',
+  'Nexus Chat',
+  'AI-assisted customer support inbox with smart routing.',
+  null,
+  'Support',
+  'beta',
+  array['Vue', 'Python', 'OpenAI'],
+  'from-purple-600/35 via-zinc-900/30 to-black',
+  false,
+  'standard',
+  array[]::text[],
+  '#',
+  null,
+  4
+),
+(
+  'orbit-hr',
+  'Orbit HR',
+  'People ops portal for onboarding and time-off workflows.',
+  null,
+  'HR Tech',
+  'live',
+  array['React', 'Supabase', 'Tailwind'],
+  'from-violet-500/30 via-neutral-900/30 to-black',
+  false,
+  'tall',
+  array[]::text[],
+  '#',
+  null,
+  5
+),
+(
+  'forge-devtools',
+  'Forge DevTools',
+  'Internal developer portal with service catalog and runbooks.',
+  null,
+  'Developer Tools',
+  'internal',
+  array['React', 'Go', 'Kubernetes'],
+  'from-purple-700/30 via-gray-900/30 to-black',
+  false,
+  'standard',
+  array[]::text[],
+  '#',
+  null,
+  6
+)
+on conflict (id) do nothing;
