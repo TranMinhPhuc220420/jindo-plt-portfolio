@@ -1,20 +1,18 @@
+import { useTranslation } from 'react-i18next'
 import { Section } from '../layout/Section'
 import { StickyProductPanel } from './StickyProductPanel'
 
 export function FeaturedProducts({ products }) {
+  const { t } = useTranslation('public')
+
   return (
     <Section id="featured" className="border-t border-border-subtle">
       <div className="mb-16 text-center md:text-left">
-        <p className="text-xs font-medium uppercase tracking-wider text-primary">
-          Flagship Products
-        </p>
+        <p className="eyebrow">{t('featured.eyebrow')}</p>
         <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
-          Built to scale, designed to impress
+          {t('featured.title')}
         </h2>
-        <p className="mt-4 max-w-2xl text-muted">
-          Scroll through our flagship applications — each engineered for
-          performance, clarity, and a premium user experience.
-        </p>
+        <p className="mt-4 max-w-2xl text-muted">{t('featured.description')}</p>
       </div>
 
       <div className="space-y-32">

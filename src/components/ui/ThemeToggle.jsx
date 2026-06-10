@@ -1,18 +1,20 @@
 import { useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Check, Monitor, Moon, Sun } from 'lucide-react'
 import { cn } from '../../lib/cn'
 import { useTheme } from '../../hooks/useTheme'
 
-const options = [
-  { value: 'light', label: 'Light', icon: Sun },
-  { value: 'dark', label: 'Dark', icon: Moon },
-  { value: 'system', label: 'System', icon: Monitor },
-]
-
 export function ThemeToggle({ className }) {
+  const { t } = useTranslation('common')
   const { preference, resolvedTheme, setPreference } = useTheme()
   const [open, setOpen] = useState(false)
   const containerRef = useRef(null)
+
+  const options = [
+    { value: 'light', label: t('theme.light'), icon: Sun },
+    { value: 'dark', label: t('theme.dark'), icon: Moon },
+    { value: 'system', label: t('theme.system'), icon: Monitor },
+  ]
 
   const ResolvedIcon = resolvedTheme === 'dark' ? Moon : Sun
 
@@ -43,7 +45,7 @@ export function ThemeToggle({ className }) {
         type="button"
         onClick={() => setOpen((prev) => !prev)}
         className="rounded-lg p-2 text-muted transition-colors hover:bg-overlay hover:text-foreground"
-        aria-label="Chọn giao diện"
+        aria-label={t('aria.selectTheme')}
         aria-haspopup="menu"
         aria-expanded={open}
       >
@@ -53,7 +55,7 @@ export function ThemeToggle({ className }) {
       {open && (
         <div
           role="menu"
-          aria-label="Tùy chọn giao diện"
+          aria-label={t('aria.themeOptions')}
           className="absolute right-0 top-full z-50 mt-2 min-w-[10.5rem] rounded-xl border border-border bg-surface p-1 shadow-card"
         >
           {options.map(({ value, label, icon: Icon }) => (

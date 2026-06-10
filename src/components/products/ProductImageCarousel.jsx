@@ -21,13 +21,12 @@ const slideVariants = {
   }),
 }
 
-export function ProductImageCarousel({ images = [], gradient, title, className }) {
+export function ProductImageCarousel({ images = [], title, className }) {
   const list = images.filter(Boolean)
 
   if (list.length === 0) {
     return (
       <ProductPreview
-        gradient={gradient}
         image={undefined}
         title={title}
         className={className}
@@ -38,7 +37,6 @@ export function ProductImageCarousel({ images = [], gradient, title, className }
   if (list.length === 1) {
     return (
       <ProductPreview
-        gradient={gradient}
         image={list[0]}
         title={title}
         className={className}
@@ -50,14 +48,13 @@ export function ProductImageCarousel({ images = [], gradient, title, className }
     <Carousel
       key={list.join('|')}
       images={list}
-      gradient={gradient}
       title={title}
       className={className}
     />
   )
 }
 
-function Carousel({ images, gradient, title, className }) {
+function Carousel({ images, title, className }) {
   const [[index, direction], setSlide] = useState([0, 0])
 
   function goTo(nextIndex, nextDirection) {
@@ -81,7 +78,7 @@ function Carousel({ images, gradient, title, className }) {
       aria-label={`${title} image carousel`}
       aria-roledescription="carousel"
     >
-      <div className={cn('absolute inset-0 -z-10 bg-gradient-to-br', gradient)} />
+      <div className="absolute inset-0 -z-10 bg-surface-elevated" />
 
       <AnimatePresence initial={false} custom={direction} mode="popLayout">
         <motion.div

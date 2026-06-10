@@ -1,0 +1,45 @@
+{
+  "language": {
+    "vi": "Tiếng Việt",
+    "en": "English",
+    "ja": "日本語"
+  },
+  "aria": {
+    "selectLanguage": "言語を選択",
+    "languageOptions": "言語オプション",
+    "selectTheme": "テーマを選択",
+    "themeOptions": "テーマオプション",
+    "openMenu": "メニューを開く",
+    "closeMenu": "メニューを閉じる",
+    "openSidebar": "メニューを開く",
+    "closeSidebar": "サイドバーを閉じる",
+    "close": "閉じる"
+  },
+  "theme": {
+    "light": "ライト",
+    "dark": "ダーク",
+    "system": "システム"
+  },
+  "status": {
+    "live": "公開中",
+    "beta": "ベータ",
+    "internal": "内部"
+  },
+  "actions": {
+    "viewLive": "ライブを見る",
+    "source": "ソース",
+    "sendMessage": "メッセージを送信",
+    "sending": "送信中...",
+    "cancel": "キャンセル",
+    "delete": "削除",
+    "edit": "編集",
+    "save": "保存",
+    "yes": "はい",
+    "no": "いいえ",
+    "logout": "ログアウト"
+  },
+  "loading": {
+    "products": "製品を読み込み中...",
+    "contacts": "お問い合わせを読み込み中..."
+  }
+}

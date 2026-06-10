@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { RootLayout } from './app/layout/RootLayout'
 import { HeroSection } from './components/hero/HeroSection'
 import { FeaturedProducts } from './components/products/FeaturedProducts'
@@ -9,6 +10,7 @@ import { useProducts } from './hooks/useProducts'
 import { techStack } from './data/tech-stack'
 
 function App() {
+  const { t } = useTranslation('public')
   const { featuredProducts, bentoProducts, loading, error } = useProducts()
 
   return (
@@ -16,29 +18,22 @@ function App() {
       <HeroSection />
       {loading ? (
         <Section id="featured">
-          <p className="py-20 text-center text-muted">Loading products...</p>
+          <p className="py-20 text-center text-muted">{t('catalog.loading')}</p>
         </Section>
       ) : error ? (
         <Section id="featured">
-          <p className="py-20 text-center text-red-400">
-            Unable to load products. Please try again later.
-          </p>
+          <p className="py-20 text-center text-red-400">{t('catalog.error')}</p>
         </Section>
       ) : (
         <>
           <FeaturedProducts products={featuredProducts} />
           <Section id="products" className="border-t border-border-subtle">
             <div className="mb-12 text-center md:text-left">
-              <p className="text-xs font-medium uppercase tracking-wider text-primary">
-                All Products
-              </p>
+              <p className="eyebrow">{t('catalog.eyebrow')}</p>
               <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
-                Full product catalog
+                {t('catalog.title')}
               </h2>
-              <p className="mt-4 max-w-2xl text-muted">
-                Every application in our portfolio — from analytics to developer
-                tools — built with the same commitment to craft.
-              </p>
+              <p className="mt-4 max-w-2xl text-muted">{t('catalog.description')}</p>
             </div>
             <ProductBentoGrid products={bentoProducts} />
           </Section>

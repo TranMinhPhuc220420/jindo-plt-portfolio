@@ -1,6 +1,6 @@
 import { cn } from '../../lib/cn'
 
-export function ProductPreview({ gradient, image, title, className }) {
+export function ProductPreview({ image, title, className }) {
   if (image) {
     return (
       <img
@@ -15,20 +15,19 @@ export function ProductPreview({ gradient, image, title, className }) {
   return (
     <div
       className={cn(
-        'flex h-full w-full flex-col justify-end bg-gradient-to-br p-6',
-        gradient,
+        'flex h-full w-full flex-col justify-end bg-surface-elevated p-6',
         className,
       )}
       role="img"
       aria-label={`${title} preview placeholder`}
     >
       <div className="space-y-2">
-        <div className="h-2 w-1/3 rounded-full bg-white/20" />
-        <div className="h-2 w-1/2 rounded-full bg-white/10" />
+        <div className="h-2 w-1/3 rounded-sm bg-border" />
+        <div className="h-2 w-1/2 rounded-sm bg-border-subtle" />
         <div className="mt-4 grid grid-cols-3 gap-2">
-          <div className="h-16 rounded-lg bg-white/5 border border-white/10" />
-          <div className="h-16 rounded-lg bg-white/5 border border-white/10" />
-          <div className="h-16 rounded-lg bg-white/5 border border-white/10" />
+          <div className="h-16 rounded-md border border-border bg-surface" />
+          <div className="h-16 rounded-md border border-border bg-surface" />
+          <div className="h-16 rounded-md border border-border bg-surface" />
         </div>
       </div>
     </div>

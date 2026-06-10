@@ -1,16 +1,19 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
 import { Mail, Package, X } from 'lucide-react'
+import logoImg from '../../assets/hero.png'
 import { cn } from '../../lib/cn'
 import { supabase } from '../../lib/supabase'
 
-const navItems = [
-  { to: '/admin/products', label: 'Products', icon: Package },
-  { to: '/admin/contacts', label: 'Contacts', icon: Mail, showBadge: true },
-]
-
 export function AdminSidebar({ open, onClose }) {
+  const { t } = useTranslation('admin')
   const [unreadCount, setUnreadCount] = useState(0)
+
+  const navItems = [
+    { to: '/admin/products', label: t('sidebar.products'), icon: Package },
+    { to: '/admin/contacts', label: t('sidebar.contacts'), icon: Mail, showBadge: true },
+  ]
 
   useEffect(() => {
     async function fetchUnread() {
@@ -55,16 +58,16 @@ export function AdminSidebar({ open, onClose }) {
       >
         <div className="flex h-16 items-center justify-between border-b border-border px-5">
           <div className="flex items-center gap-2">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary/20 border border-primary/30 text-sm font-bold text-primary">
-              P
+            <img src={logoImg} alt="PLT SOLUTIONS Logo" className="h-7 w-auto" />
+            <span className="text-xs font-semibold uppercase tracking-wide text-muted">
+              {t('sidebar.label')}
             </span>
-            <span className="font-semibold text-foreground">PLT Admin</span>
           </div>
           <button
             type="button"
             onClick={onClose}
             className="rounded-lg p-1.5 text-muted hover:bg-overlay lg:hidden"
-            aria-label="Close sidebar"
+            aria-label={t('aria.closeSidebar', { ns: 'common' })}
           >
             <X size={18} />
           </button>

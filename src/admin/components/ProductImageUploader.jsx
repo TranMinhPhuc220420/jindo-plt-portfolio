@@ -1,8 +1,11 @@
 import { useRef, useState } from 'react'
-import { ImagePlus, Star, Trash2, Upload } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
+import { Star, Trash2, Upload } from 'lucide-react'
+import { cn } from '../../lib/cn'
 import { deleteProductImages, uploadProductImage } from '../../lib/productImages'
 
 export function ProductImageUploader({ images, onChange }) {
+  const { t } = useTranslation('admin')
   const inputRef = useRef(null)
   const [dragging, setDragging] = useState(false)
   const [uploading, setUploading] = useState(false)
@@ -46,7 +49,8 @@ export function ProductImageUploader({ images, onChange }) {
     }
   }
 
-  async function handleRemove(url) {
+  async function handleRemove(url, e) {
+    e.stopPropagation()
     setError('')
     const { error: deleteError } = await deleteProductImages([url])
     if (deleteError) {
@@ -73,7 +77,7 @@ export function ProductImageUploader({ images, onChange }) {
         onDragLeave={() => setDragging(false)}
         onDrop={handleDrop}
         onClick={() => inputRef.current?.click()}
-        className={`flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed px-4 py-8 transition-colors ${
+        className={`flex cursor-pointer flex-col items-center justify-center gap-2 rounded-md border-2 border-dashed px-4 py-8 transition-colors ${
           dragging
             ? 'border-primary/50 bg-primary/5'
             : 'border-border bg-overlay-muted hover:border-primary/30 hover:bg-overlay'
@@ -88,66 +92,81 @@ export function ProductImageUploader({ images, onChange }) {
           onChange={handleInputChange}
         />
         {uploading ? (
-          <p className="text-sm text-muted">Uploading...</p>
+          <p className="text-sm text-muted">{t('imageUploader.uploading')}</p>
         ) : (
           <>
             <Upload size={24} className="text-muted" />
-            <p className="text-sm text-foreground">
-              Drop images here or click to upload
-            </p>
-            <p className="text-xs text-muted">PNG, JPG, WebP — max 5 MB each</p>
+            <p className="text-sm text-foreground">{t('imageUploader.dropHint')}</p>
+            <p className="text-xs text-muted">{t('imageUploader.formats')}</p>
           </>
         )}
       </div>
 
       {images.length > 0 && (
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-          {images.map((url, index) => (
-            <div
-              key={url}
-              className="group relative overflow-hidden rounded-xl border border-border bg-overlay"
-            >
-              <img
-                src={url}
-                alt={`Product image ${index + 1}`}
-                className="aspect-video w-full object-cover"
-              />
-              {index === 0 && (
-                <span className="absolute left-2 top-2 inline-flex items-center gap-1 rounded-md bg-primary/90 px-2 py-0.5 text-xs font-medium text-white">
-                  <Star size={12} />
-                  Cover
-                </span>
-              )}
-              <div className="absolute inset-x-0 bottom-0 flex gap-1 bg-gradient-to-t from-black/80 to-transparent p-2 opacity-0 transition-opacity group-hover:opacity-100">
-                {index !== 0 && (
+        <>
+          <p className="text-label-sm text-muted">{t('imageUploader.clickCoverHint')}</p>
+          <div className="grid grid-cols-2 gap-3">
+            {images.map((url, index) => {
+              const isCover = index === 0
+
+              return (
+                <div
+                  key={url}
+                  className={cn(
+                    'group relative overflow-hidden rounded-md border bg-overlay transition-colors',
+                    isCover
+                      ? 'border-primary ring-1 ring-primary/30'
+                      : 'cursor-pointer border-border hover:border-primary/40',
+                  )}
+                >
                   <button
                     type="button"
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      handleSetCover(index)
-                    }}
-                    className="flex flex-1 items-center justify-center gap-1 rounded-lg bg-white/10 px-2 py-1.5 text-xs text-white hover:bg-white/20"
-                    title="Set as cover"
+                    onClick={() => handleSetCover(index)}
+                    disabled={isCover}
+                    className={cn('block w-full text-left', !isCover && 'cursor-pointer')}
+                    aria-label={
+                      isCover
+                        ? t('imageUploader.coverImage', {
+                            index: index + 1,
+                            total: images.length,
+                          })
+                        : t('imageUploader.setImageAsCover', { index: index + 1 })
+                    }
+                    aria-current={isCover ? 'true' : undefined}
                   >
-                    <ImagePlus size={14} />
-                    Cover
+                    <img
+                      src={url}
+                      alt={t('imageUploader.productImage', { index: index + 1 })}
+                      className="aspect-video w-full object-cover"
+                      draggable={false}
+                    />
+                    {!isCover && (
+                      <span className="absolute inset-0 flex items-center justify-center bg-foreground/0 text-xs font-medium text-white opacity-0 transition-opacity group-hover:bg-foreground/40 group-hover:opacity-100">
+                        {t('imageUploader.setCover')}
+                      </span>
+                    )}
                   </button>
-                )}
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    handleRemove(url)
-                  }}
-                  className="flex items-center justify-center rounded-lg bg-red-500/80 px-2 py-1.5 text-xs text-white hover:bg-red-500"
-                  title="Remove image"
-                >
-                  <Trash2 size={14} />
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
+
+                  {isCover && (
+                    <span className="pointer-events-none absolute left-2 top-2 inline-flex items-center gap-1 rounded-md bg-primary px-2 py-0.5 text-xs font-medium text-white">
+                      <Star size={12} />
+                      {t('imageUploader.cover')}
+                    </span>
+                  )}
+
+                  <button
+                    type="button"
+                    onClick={(e) => handleRemove(url, e)}
+                    className="absolute right-2 top-2 z-10 rounded-md bg-red-500/90 p-1.5 text-white opacity-0 transition-opacity hover:bg-red-500 group-hover:opacity-100 focus-visible:opacity-100"
+                    aria-label={t('imageUploader.removeImage', { index: index + 1 })}
+                  >
+                    <Trash2 size={14} />
+                  </button>
+                </div>
+              )
+            })}
+          </div>
+        </>
       )}
 
       {error && (

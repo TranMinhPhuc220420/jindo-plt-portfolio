@@ -1,0 +1,79 @@
+{
+  "header": {
+    "brandName": "PLT Solutions",
+    "tagline": "Product Portfolio",
+    "getInTouch": "Get in touch"
+  },
+  "nav": {
+    "products": "Products",
+    "featured": "Featured",
+    "stack": "Stack",
+    "contact": "Contact"
+  },
+  "hero": {
+    "eyebrow": "Product Portfolio",
+    "title": "Web apps built for",
+    "titleHighlight": "premium experiences",
+    "description": "PLT Solutions crafts modern SaaS products — from enterprise platforms to analytics dashboards. Explore our portfolio of production-ready web applications.",
+    "viewProducts": "View Products",
+    "contactUs": "Contact us",
+    "productsShipped": "Products shipped",
+    "technologies": "Technologies"
+  },
+  "featured": {
+    "eyebrow": "Flagship Products",
+    "title": "Built to scale, designed to impress",
+    "description": "Scroll through our flagship applications — each engineered for performance, clarity, and a premium user experience."
+  },
+  "catalog": {
+    "eyebrow": "All Products",
+    "title": "Full product catalog",
+    "description": "Every application in our portfolio — from analytics to developer tools — built with the same commitment to craft.",
+    "loading": "Loading products...",
+    "error": "Unable to load products. Please try again later."
+  },
+  "stack": {
+    "eyebrow": "Technology",
+    "title": "Built with modern tools",
+    "description": "Our products are powered by battle-tested frameworks and infrastructure — chosen for speed, reliability, and developer experience."
+  },
+  "contact": {
+    "eyebrow": "Contact",
+    "title": "Let's build something great",
+    "description": "Interested in our products or want to collaborate? Send us a message and we'll get back to you within 24 hours.",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "company": "Company",
+      "companyOptional": "(optional)",
+      "message": "Message",
+      "namePlaceholder": "Your name",
+      "emailPlaceholder": "you@company.com",
+      "companyPlaceholder": "Company name",
+      "messagePlaceholder": "Tell us about your project..."
+    },
+    "success": "Message sent! We'll get back to you within 24 hours.",
+    "error": "Failed to send message. Please try again.",
+    "footerDescription": "We design and ship premium web applications — from analytics platforms to developer tools — built for scale and craft.",
+    "quickLinks": "Quick links",
+    "company": "Company",
+    "getInTouch": "Get in touch",
+    "hours": "Mon – Fri, 9:00 AM – 6:00 PM (ICT)",
+    "copyright": "PLT Solutions. All rights reserved."
+  },
+  "footerLinks": {
+    "aboutUs": "About Us",
+    "careers": "Careers",
+    "blog": "Blog",
+    "caseStudies": "Case Studies",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "cookiePolicy": "Cookie Policy"
+  },
+  "social": {
+    "instagram": "Instagram",
+    "youtube": "Youtube",
+    "facebook": "Facebook",
+    "email": "Email"
+  }
+}

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Section } from '../layout/Section'
 
 function MarqueeRow({ items, reverse = false }) {
@@ -11,7 +12,7 @@ function MarqueeRow({ items, reverse = false }) {
         {doubled.map((tech, i) => (
           <div
             key={`${tech.name}-${i}`}
-            className="flex shrink-0 items-center gap-2.5 rounded-xl border border-border bg-overlay px-5 py-3 backdrop-blur-sm"
+            className="flex shrink-0 items-center gap-2.5 rounded-md border border-border bg-surface px-5 py-3"
           >
             <span
               className="h-2.5 w-2.5 rounded-full"
@@ -29,6 +30,7 @@ function MarqueeRow({ items, reverse = false }) {
 }
 
 export function TechStackMarquee({ items }) {
+  const { t } = useTranslation('public')
   const half = Math.ceil(items.length / 2)
   const rowA = items.slice(0, half)
   const rowB = items.slice(half)
@@ -36,16 +38,11 @@ export function TechStackMarquee({ items }) {
   return (
     <Section id="stack" className="border-t border-border-subtle overflow-hidden">
       <div className="mb-12 text-center">
-        <p className="text-xs font-medium uppercase tracking-wider text-primary">
-          Technology
-        </p>
+        <p className="eyebrow">{t('stack.eyebrow')}</p>
         <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
-          Built with modern tools
+          {t('stack.title')}
         </h2>
-        <p className="mt-4 mx-auto max-w-xl text-muted">
-          Our products are powered by battle-tested frameworks and
-          infrastructure — chosen for speed, reliability, and developer experience.
-        </p>
+        <p className="mt-4 mx-auto max-w-xl text-muted">{t('stack.description')}</p>
       </div>
 
       <div className="space-y-4 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">

@@ -1,0 +1,150 @@
+{
+  "sidebar": {
+    "label": "Admin",
+    "products": "Products",
+    "contacts": "Contacts"
+  },
+  "pages": {
+    "products": "Products",
+    "contacts": "Contacts",
+    "newProduct": "New Product",
+    "editProduct": "Edit Product",
+    "admin": "Admin"
+  },
+  "login": {
+    "title": "PLT Admin",
+    "subtitle": "Sign in to manage your portfolio",
+    "email": "Email",
+    "password": "Password",
+    "emailPlaceholder": "admin@example.com",
+    "signIn": "Sign in",
+    "signingIn": "Signing in...",
+    "error": "Login failed. Please try again."
+  },
+  "products": {
+    "description": "Manage products displayed on the public portfolio.",
+    "addProduct": "Add product",
+    "empty": "No products yet.",
+    "deleteConfirm": "Delete \"{{title}}\"? This cannot be undone.",
+    "backToProducts": "Back to products",
+    "newProduct": "New product",
+    "editProduct": "Edit product",
+    "newDescription": "Add a product to your public portfolio.",
+    "editDescription": "Editing {{title}}",
+    "requiredFields": "ID, title, and description are required.",
+    "saving": "Saving…",
+    "createProduct": "Create product",
+    "saveChanges": "Save changes",
+    "table": {
+      "title": "Title",
+      "category": "Category",
+      "status": "Status",
+      "featured": "Featured",
+      "actions": "Actions"
+    },
+    "sections": {
+      "basics": {
+        "title": "Basics",
+        "description": "Core copy shown on product cards and detail views."
+      },
+      "classification": {
+        "title": "Classification",
+        "description": "How the product is categorized and ordered in the catalog."
+      },
+      "tagsHighlights": {
+        "title": "Tags & highlights",
+        "description": "Tags as comma-separated text; highlights as an editable list."
+      },
+      "media": {
+        "title": "Media",
+        "description": "First image is used as the cover in listings."
+      },
+      "links": {
+        "title": "Links",
+        "description": "Optional URLs for live demo and source code."
+      }
+    },
+    "fields": {
+      "id": "ID (slug)",
+      "idHint": "URL-safe identifier. Leave empty to generate from title.",
+      "idPlaceholder": "my-product",
+      "willBeSavedAs": "Will be saved as",
+      "title": "Title",
+      "titlePlaceholder": "Product name",
+      "shortDescription": "Short description",
+      "shortDescriptionHint": "One or two sentences for cards and listings.",
+      "longDescription": "Long description",
+      "longDescriptionHint": "Full overview for the featured product panel.",
+      "longDescriptionPlaceholder": "Extended description for detail views…",
+      "category": "Category",
+      "categoryPlaceholder": "Analytics, DevTools…",
+      "sortOrder": "Sort order",
+      "sortOrderHint": "Lower numbers appear first.",
+      "status": "Status",
+      "gridLayout": "Grid layout",
+      "featuredProduct": "Featured product",
+      "featuredProductHint": "Show in the sticky scroll section on the homepage.",
+      "featuredProductAria": "Featured product",
+      "tags": "Tags",
+      "tagsHint": "Technologies or themes, e.g. React, PostgreSQL",
+      "tagsPlaceholder": "React, Node.js, PostgreSQL",
+      "highlights": "Highlights",
+      "highlightsHint": "Shown in the featured scroll panel — one point per row.",
+      "highlightsPlaceholder": "e.g. Real-time sync",
+      "highlightsAdd": "Add highlight",
+      "highlightsEmpty": "No highlights yet. Add key selling points for featured products.",
+      "liveUrl": "Live URL",
+      "liveUrlPlaceholder": "https://app.example.com",
+      "repoUrl": "Repo URL",
+      "repoUrlPlaceholder": "https://github.com/org/repo"
+    },
+    "layout": {
+      "featured": "Featured",
+      "standard": "Standard",
+      "wide": "Wide",
+      "tall": "Tall"
+    }
+  },
+  "contacts": {
+    "description": "Contact submissions from the public portfolio site.",
+    "deleteSelected": "Delete selected ({{count}})",
+    "empty": "No contact submissions yet.",
+    "deleteConfirm": "Delete submission from \"{{name}}\"? This cannot be undone.",
+    "bulkDeleteConfirm": "Delete {{count}} submission(s)? This cannot be undone.",
+    "markAsRead": "Mark as read",
+    "marking": "Marking...",
+    "deleting": "Deleting...",
+    "table": {
+      "selectAll": "Select all contacts",
+      "selectContact": "Select {{name}}",
+      "name": "Name",
+      "email": "Email",
+      "company": "Company",
+      "message": "Message",
+      "date": "Date",
+      "status": "Status",
+      "actions": "Actions",
+      "read": "Read",
+      "unread": "Unread"
+    }
+  },
+  "editableList": {
+    "placeholder": "Enter text…",
+    "addItem": "Add item",
+    "empty": "No items yet.",
+    "itemAria": "Item {{index}}",
+    "removeItemAria": "Remove item {{index}}"
+  },
+  "imageUploader": {
+    "uploading": "Uploading...",
+    "dropHint": "Drop images here or click to upload",
+    "formats": "PNG, JPG, WebP — max 5 MB each",
+    "clickCoverHint": "Click an image to set it as the cover.",
+    "coverImage": "Cover image ({{index}} of {{total}})",
+    "setImageAsCover": "Set image {{index}} as cover",
+    "setCover": "Set cover",
+    "cover": "Cover",
+    "removeImage": "Remove image {{index}}",
+    "productImage": "Product image {{index}}"
+  }
+}

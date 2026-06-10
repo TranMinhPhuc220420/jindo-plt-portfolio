@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
 import { Code2, ExternalLink } from 'lucide-react'
 import { useScrollProgress } from '../../hooks/useScrollProgress'
@@ -9,6 +10,7 @@ import { BrowserMockup } from './BrowserMockup'
 import { ProductImageCarousel } from './ProductImageCarousel'
 
 export function StickyProductPanel({ product }) {
+  const { t } = useTranslation('common')
   const { ref, progress } = useScrollProgress()
   const highlightCount = product.highlights.length
   const displayImages =
@@ -20,10 +22,7 @@ export function StickyProductPanel({ product }) {
 
   const activeIndex = useMemo(() => {
     if (highlightCount <= 1) return 0
-    return Math.min(
-      Math.floor(progress * highlightCount),
-      highlightCount - 1,
-    )
+    return Math.min(Math.floor(progress * highlightCount), highlightCount - 1)
   }, [progress, highlightCount])
 
   return (
@@ -34,20 +33,14 @@ export function StickyProductPanel({ product }) {
     >
       <div className="sticky top-24 grid items-start gap-10 lg:grid-cols-2 lg:gap-16">
         <BrowserMockup url={`${product.id}.pltsolutions.dev`}>
-          <ProductImageCarousel
-            images={displayImages}
-            gradient={product.gradient}
-            title={product.title}
-          />
+          <ProductImageCarousel images={displayImages} title={product.title} />
         </BrowserMockup>
 
         <div className="flex flex-col gap-6 py-4">
           <div>
             <div className="mb-3 flex flex-wrap items-center gap-2">
-              <span className="text-xs font-medium uppercase tracking-wider text-primary">
-                {product.category}
-              </span>
-              <Badge status={product.status}>{product.status}</Badge>
+              <span className="eyebrow">{product.category}</span>
+              <Badge status={product.status}>{t(`status.${product.status}`)}</Badge>
             </div>
             <h3 className="text-3xl font-semibold tracking-tight text-foreground md:text-4xl">
               {product.title}
@@ -91,14 +84,14 @@ export function StickyProductPanel({ product }) {
           <div className="flex flex-wrap gap-3 pt-2">
             {product.liveUrl && (
               <Button href={product.liveUrl}>
-                View live
+                {t('actions.viewLive')}
                 <ExternalLink size={16} />
               </Button>
             )}
             {product.repoUrl && (
               <Button href={product.repoUrl} variant="ghost">
                 <Code2 size={16} />
-                Source
+                {t('actions.source')}
               </Button>
             )}
           </div>

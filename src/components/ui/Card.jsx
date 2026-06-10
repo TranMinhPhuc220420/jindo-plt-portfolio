@@ -4,9 +4,9 @@ export function Card({ children, className, hover = false, ...props }) {
   return (
     <div
       className={cn(
-        'rounded-2xl border border-border bg-glass backdrop-blur-xl',
+        'rounded-lg border border-border bg-glass',
         hover &&
-          'transition-all duration-300 hover:border-primary/30 hover:shadow-glow-sm dark:hover:shadow-glow-sm hover:-translate-y-0.5',
+          'transition-colors duration-200 hover:border-primary/40',
         className,
       )}
       {...props}

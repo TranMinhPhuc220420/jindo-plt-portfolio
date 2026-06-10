@@ -4,7 +4,7 @@ export function BrowserMockup({ children, className, url = 'app.pltsolutions.dev
   return (
     <div
       className={cn(
-        'overflow-hidden rounded-xl border border-border bg-surface shadow-card',
+        'overflow-hidden rounded-lg border border-border bg-surface shadow-card',
         className,
       )}
     >

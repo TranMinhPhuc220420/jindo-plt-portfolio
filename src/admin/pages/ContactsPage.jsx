@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Trash2, X } from 'lucide-react'
 import { Button } from '../../components/ui/Button'
 import { Card } from '../../components/ui/Card'
@@ -6,6 +7,7 @@ import { supabase } from '../../lib/supabase'
 import { ContactTable } from '../components/ContactTable'
 
 export function ContactsPage() {
+  const { t } = useTranslation(['admin', 'common'])
   const [contacts, setContacts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -86,9 +88,7 @@ export function ContactsPage() {
 
   async function handleDelete(contact) {
     if (
-      !window.confirm(
-        `Delete submission from "${contact.name}"? This cannot be undone.`,
-      )
+      !window.confirm(t('admin:contacts.deleteConfirm', { name: contact.name }))
     ) {
       return
     }
@@ -121,11 +121,7 @@ export function ContactsPage() {
     const ids = [...selectedIds]
     if (ids.length === 0) return
 
-    if (
-      !window.confirm(
-        `Delete ${ids.length} submission(s)? This cannot be undone.`,
-      )
-    ) {
+    if (!window.confirm(t('admin:contacts.bulkDeleteConfirm', { count: ids.length }))) {
       return
     }
 
@@ -153,9 +149,7 @@ export function ContactsPage() {
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <p className="text-sm text-muted">
-          Contact submissions from the public portfolio site.
-        </p>
+        <p className="text-sm text-muted">{t('admin:contacts.description')}</p>
         {selectedIds.size > 0 && (
           <Button
             variant="ghost"
@@ -164,12 +158,12 @@ export function ContactsPage() {
             className="border border-red-500/30 text-red-400 hover:bg-red-500/10 hover:text-red-300"
           >
             <Trash2 size={16} />
-            Delete selected ({selectedIds.size})
+            {t('admin:contacts.deleteSelected', { count: selectedIds.size })}
           </Button>
         )}
       </div>
 
-      {loading && <p className="text-muted">Loading contacts...</p>}
+      {loading && <p className="text-muted">{t('common:loading.contacts')}</p>}
       {error && (
         <p className="rounded-lg bg-red-500/10 border border-red-500/30 px-4 py-3 text-sm text-red-400">
           {error}
@@ -196,9 +190,7 @@ export function ContactsPage() {
           <Card className="relative z-10 w-full max-w-lg p-6">
             <div className="mb-4 flex items-start justify-between">
               <div>
-                <h2 className="text-lg font-semibold text-foreground">
-                  {selected.name}
-                </h2>
+                <h2 className="text-lg font-semibold text-foreground">{selected.name}</h2>
                 <p className="text-sm text-muted">{selected.email}</p>
                 {selected.company && (
                   <p className="text-sm text-muted">{selected.company}</p>
@@ -208,7 +200,7 @@ export function ContactsPage() {
                 type="button"
                 onClick={() => setSelected(null)}
                 className="rounded-lg p-1.5 text-muted hover:bg-overlay"
-                aria-label="Close"
+                aria-label={t('common:aria.close')}
               >
                 <X size={18} />
               </button>
@@ -224,11 +216,8 @@ export function ContactsPage() {
 
             <div className="mt-6 flex flex-wrap gap-3">
               {!selected.is_read && (
-                <Button
-                  onClick={() => handleMarkRead(selected)}
-                  disabled={marking}
-                >
-                  {marking ? 'Marking...' : 'Mark as read'}
+                <Button onClick={() => handleMarkRead(selected)} disabled={marking}>
+                  {marking ? t('admin:contacts.marking') : t('admin:contacts.markAsRead')}
                 </Button>
               )}
               <Button
@@ -238,7 +227,7 @@ export function ContactsPage() {
                 className="border border-red-500/30 text-red-400 hover:bg-red-500/10 hover:text-red-300"
               >
                 <Trash2 size={16} />
-                {deleting ? 'Deleting...' : 'Delete'}
+                {deleting ? t('admin:contacts.deleting') : t('common:actions.delete')}
               </Button>
             </div>
           </Card>

@@ -1,0 +1,45 @@
+{
+  "language": {
+    "vi": "Tiếng Việt",
+    "en": "English",
+    "ja": "日本語"
+  },
+  "aria": {
+    "selectLanguage": "Chọn ngôn ngữ",
+    "languageOptions": "Tùy chọn ngôn ngữ",
+    "selectTheme": "Chọn giao diện",
+    "themeOptions": "Tùy chọn giao diện",
+    "openMenu": "Mở menu",
+    "closeMenu": "Đóng menu",
+    "openSidebar": "Mở menu",
+    "closeSidebar": "Đóng sidebar",
+    "close": "Đóng"
+  },
+  "theme": {
+    "light": "Sáng",
+    "dark": "Tối",
+    "system": "Hệ thống"
+  },
+  "status": {
+    "live": "Đang hoạt động",
+    "beta": "Beta",
+    "internal": "Nội bộ"
+  },
+  "actions": {
+    "viewLive": "Xem trực tiếp",
+    "source": "Mã nguồn",
+    "sendMessage": "Gửi tin nhắn",
+    "sending": "Đang gửi...",
+    "cancel": "Hủy",
+    "delete": "Xóa",
+    "edit": "Sửa",
+    "save": "Lưu",
+    "yes": "Có",
+    "no": "Không",
+    "logout": "Đăng xuất"
+  },
+  "loading": {
+    "products": "Đang tải sản phẩm...",
+    "contacts": "Đang tải liên hệ..."
+  }
+}

@@ -10,7 +10,7 @@ export function Badge({ children, status, className }) {
   return (
     <span
       className={cn(
-        'inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium capitalize',
+        'inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-medium',
         status ? statusStyles[status] : 'bg-overlay text-muted border-border',
         className,
       )}

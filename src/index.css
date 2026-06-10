@@ -1,49 +1,52 @@
+@import '@fontsource-variable/geist';
+@import '@fontsource-variable/geist-mono';
+@import '@fontsource/jetbrains-mono/400.css';
 @import 'tailwindcss';
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  --plt-background: #fafafa;
+  --plt-background: #f1f3f5;
   --plt-surface: #ffffff;
-  --plt-surface-elevated: #f4f4f5;
-  --plt-border-subtle: rgba(0, 0, 0, 0.06);
-  --plt-border: rgba(0, 0, 0, 0.1);
-  --plt-overlay: rgba(0, 0, 0, 0.04);
-  --plt-overlay-hover: rgba(0, 0, 0, 0.06);
-  --plt-overlay-muted: rgba(0, 0, 0, 0.02);
-  --plt-glass: rgba(255, 255, 255, 0.72);
-  --plt-primary: #9333ea;
-  --plt-primary-deep: #7c3aed;
-  --plt-muted: #71717a;
-  --plt-foreground: #18181b;
-  --plt-chrome-bar: rgba(24, 24, 27, 0.08);
-  --plt-shadow-glow: 0 4px 24px rgba(0, 0, 0, 0.08);
-  --plt-shadow-glow-sm: 0 2px 12px rgba(0, 0, 0, 0.06);
-  --plt-shadow-card: 0 1px 3px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(0, 0, 0, 0.06);
-  --plt-selection-bg: rgba(147, 51, 234, 0.2);
-  --plt-selection-fg: #18181b;
+  --plt-surface-elevated: #e9ecef;
+  --plt-border-subtle: rgba(15, 20, 25, 0.06);
+  --plt-border: rgba(74, 85, 104, 0.22);
+  --plt-overlay: rgba(15, 20, 25, 0.04);
+  --plt-overlay-hover: rgba(15, 20, 25, 0.06);
+  --plt-overlay-muted: rgba(15, 20, 25, 0.02);
+  --plt-glass: #ffffff;
+  --plt-primary: #2c5ef5;
+  --plt-primary-deep: #0039b5;
+  --plt-muted: #4a5568;
+  --plt-foreground: #0f1419;
+  --plt-chrome-bar: rgba(15, 20, 25, 0.06);
+  --plt-shadow-glow: 0 1px 2px rgba(15, 20, 25, 0.06);
+  --plt-shadow-glow-sm: 0 1px 2px rgba(15, 20, 25, 0.04);
+  --plt-shadow-card: 0 1px 2px rgba(15, 20, 25, 0.06), 0 0 0 1px rgba(15, 20, 25, 0.06);
+  --plt-selection-bg: rgba(44, 94, 245, 0.18);
+  --plt-selection-fg: #0f1419;
 }
 
 .dark {
-  --plt-background: #0a0a0b;
-  --plt-surface: #111113;
-  --plt-surface-elevated: #1a1a1f;
-  --plt-border-subtle: rgba(255, 255, 255, 0.05);
-  --plt-border: rgba(255, 255, 255, 0.1);
-  --plt-overlay: rgba(255, 255, 255, 0.05);
-  --plt-overlay-hover: rgba(255, 255, 255, 0.1);
-  --plt-overlay-muted: rgba(255, 255, 255, 0.02);
-  --plt-glass: rgba(255, 255, 255, 0.05);
-  --plt-primary: #a855f7;
-  --plt-primary-deep: #7c3aed;
-  --plt-muted: #a1a1aa;
-  --plt-foreground: #f4f4f5;
-  --plt-chrome-bar: rgba(0, 0, 0, 0.4);
-  --plt-shadow-glow: 0 0 40px rgba(168, 85, 247, 0.35);
-  --plt-shadow-glow-sm: 0 0 20px rgba(168, 85, 247, 0.2);
-  --plt-shadow-card: 0 0 0 1px rgba(255, 255, 255, 0.08);
-  --plt-selection-bg: rgba(168, 85, 247, 0.3);
-  --plt-selection-fg: #fff;
+  --plt-background: #0b0f19;
+  --plt-surface: #161b22;
+  --plt-surface-elevated: #1d2022;
+  --plt-border-subtle: rgba(224, 227, 229, 0.06);
+  --plt-border: #44474a;
+  --plt-overlay: rgba(224, 227, 229, 0.05);
+  --plt-overlay-hover: rgba(224, 227, 229, 0.08);
+  --plt-overlay-muted: rgba(224, 227, 229, 0.02);
+  --plt-glass: #161b22;
+  --plt-primary: #2c5ef5;
+  --plt-primary-deep: #4a73ff;
+  --plt-muted: #c5c6cb;
+  --plt-foreground: #f1f3f5;
+  --plt-chrome-bar: rgba(0, 0, 0, 0.35);
+  --plt-shadow-glow: 0 1px 2px rgba(0, 0, 0, 0.24);
+  --plt-shadow-glow-sm: 0 1px 2px rgba(0, 0, 0, 0.18);
+  --plt-shadow-card: 0 0 0 1px #44474a;
+  --plt-selection-bg: rgba(44, 94, 245, 0.28);
+  --plt-selection-fg: #f1f3f5;
 }
 
 @theme inline {
@@ -66,7 +69,13 @@
   --shadow-glow-sm: var(--plt-shadow-glow-sm);
   --shadow-card: var(--plt-shadow-card);
 
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Geist Variable', 'Geist', system-ui, sans-serif;
+  --font-mono: 'Geist Mono Variable', 'Geist Mono', 'JetBrains Mono', monospace;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 12px;
 
   --animate-marquee: marquee 40s linear infinite;
   --animate-marquee-reverse: marquee-reverse 40s linear infinite;
@@ -113,6 +122,8 @@
   body {
     margin: 0;
     font-family: var(--font-sans);
+    font-size: 0.95rem;
+    line-height: 1.55;
     background-color: var(--color-background);
     color: var(--color-foreground);
     -webkit-font-smoothing: antialiased;
@@ -120,8 +131,46 @@
     transition: background-color 200ms ease, color 200ms ease;
   }
 
+  h1,
+  .text-h1 {
+    font-size: 2.25rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .text-display {
+    font-size: 3.75rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .text-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0;
+    line-height: 1.2;
+  }
+
+  .text-label-sm {
+    font-family: 'JetBrains Mono', var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: 1.2;
+  }
+
   ::selection {
     background-color: var(--plt-selection-bg);
     color: var(--plt-selection-fg);
+  }
+}
+
+@layer components {
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0;
+    color: var(--color-muted);
   }
 }

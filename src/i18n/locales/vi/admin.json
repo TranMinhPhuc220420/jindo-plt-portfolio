@@ -1,0 +1,150 @@
+{
+  "sidebar": {
+    "label": "Admin",
+    "products": "Sản phẩm",
+    "contacts": "Liên hệ"
+  },
+  "pages": {
+    "products": "Sản phẩm",
+    "contacts": "Liên hệ",
+    "newProduct": "Sản phẩm mới",
+    "editProduct": "Sửa sản phẩm",
+    "admin": "Admin"
+  },
+  "login": {
+    "title": "PLT Admin",
+    "subtitle": "Đăng nhập để quản lý danh mục",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "emailPlaceholder": "admin@example.com",
+    "signIn": "Đăng nhập",
+    "signingIn": "Đang đăng nhập...",
+    "error": "Đăng nhập thất bại. Vui lòng thử lại."
+  },
+  "products": {
+    "description": "Quản lý sản phẩm hiển thị trên danh mục công khai.",
+    "addProduct": "Thêm sản phẩm",
+    "empty": "Chưa có sản phẩm nào.",
+    "deleteConfirm": "Xóa \"{{title}}\"? Hành động này không thể hoàn tác.",
+    "backToProducts": "Quay lại danh sách",
+    "newProduct": "Sản phẩm mới",
+    "editProduct": "Sửa sản phẩm",
+    "newDescription": "Thêm sản phẩm vào danh mục công khai.",
+    "editDescription": "Đang sửa {{title}}",
+    "requiredFields": "ID, tiêu đề và mô tả ngắn là bắt buộc.",
+    "saving": "Đang lưu…",
+    "createProduct": "Tạo sản phẩm",
+    "saveChanges": "Lưu thay đổi",
+    "table": {
+      "title": "Tiêu đề",
+      "category": "Danh mục",
+      "status": "Trạng thái",
+      "featured": "Nổi bật",
+      "actions": "Thao tác"
+    },
+    "sections": {
+      "basics": {
+        "title": "Thông tin cơ bản",
+        "description": "Nội dung hiển thị trên thẻ sản phẩm và trang chi tiết."
+      },
+      "classification": {
+        "title": "Phân loại",
+        "description": "Cách sản phẩm được phân loại và sắp xếp trong danh mục."
+      },
+      "tagsHighlights": {
+        "title": "Tags & điểm nổi bật",
+        "description": "Tags dạng văn bản phân cách bằng dấu phẩy; điểm nổi bật dạng danh sách."
+      },
+      "media": {
+        "title": "Hình ảnh",
+        "description": "Ảnh đầu tiên được dùng làm ảnh bìa trong danh sách."
+      },
+      "links": {
+        "title": "Liên kết",
+        "description": "URL tùy chọn cho demo trực tiếp và mã nguồn."
+      }
+    },
+    "fields": {
+      "id": "ID (slug)",
+      "idHint": "Định danh URL. Để trống để tạo từ tiêu đề.",
+      "idPlaceholder": "san-pham-cua-toi",
+      "willBeSavedAs": "Sẽ được lưu dưới dạng",
+      "title": "Tiêu đề",
+      "titlePlaceholder": "Tên sản phẩm",
+      "shortDescription": "Mô tả ngắn",
+      "shortDescriptionHint": "Một hoặc hai câu cho thẻ và danh sách.",
+      "longDescription": "Mô tả dài",
+      "longDescriptionHint": "Tổng quan đầy đủ cho panel sản phẩm nổi bật.",
+      "longDescriptionPlaceholder": "Mô tả chi tiết cho trang chi tiết…",
+      "category": "Danh mục",
+      "categoryPlaceholder": "Analytics, DevTools…",
+      "sortOrder": "Thứ tự sắp xếp",
+      "sortOrderHint": "Số nhỏ hơn hiển thị trước.",
+      "status": "Trạng thái",
+      "gridLayout": "Bố cục lưới",
+      "featuredProduct": "Sản phẩm nổi bật",
+      "featuredProductHint": "Hiển thị trong phần cuộn sticky trên trang chủ.",
+      "featuredProductAria": "Sản phẩm nổi bật",
+      "tags": "Tags",
+      "tagsHint": "Công nghệ hoặc chủ đề, vd. React, PostgreSQL",
+      "tagsPlaceholder": "React, Node.js, PostgreSQL",
+      "highlights": "Điểm nổi bật",
+      "highlightsHint": "Hiển thị trong panel cuộn nổi bật — mỗi dòng một điểm.",
+      "highlightsPlaceholder": "vd. Đồng bộ thời gian thực",
+      "highlightsAdd": "Thêm điểm nổi bật",
+      "highlightsEmpty": "Chưa có điểm nổi bật. Thêm các điểm bán hàng chính cho sản phẩm nổi bật.",
+      "liveUrl": "URL trực tiếp",
+      "liveUrlPlaceholder": "https://app.example.com",
+      "repoUrl": "URL repo",
+      "repoUrlPlaceholder": "https://github.com/org/repo"
+    },
+    "layout": {
+      "featured": "Nổi bật",
+      "standard": "Tiêu chuẩn",
+      "wide": "Rộng",
+      "tall": "Cao"
+    }
+  },
+  "contacts": {
+    "description": "Tin nhắn liên hệ từ trang danh mục công khai.",
+    "deleteSelected": "Xóa đã chọn ({{count}})",
+    "empty": "Chưa có tin nhắn liên hệ nào.",
+    "deleteConfirm": "Xóa tin nhắn từ \"{{name}}\"? Hành động này không thể hoàn tác.",
+    "bulkDeleteConfirm": "Xóa {{count}} tin nhắn? Hành động này không thể hoàn tác.",
+    "markAsRead": "Đánh dấu đã đọc",
+    "marking": "Đang đánh dấu...",
+    "deleting": "Đang xóa...",
+    "table": {
+      "selectAll": "Chọn tất cả liên hệ",
+      "selectContact": "Chọn {{name}}",
+      "name": "Tên",
+      "email": "Email",
+      "company": "Công ty",
+      "message": "Tin nhắn",
+      "date": "Ngày",
+      "status": "Trạng thái",
+      "actions": "Thao tác",
+      "read": "Đã đọc",
+      "unread": "Chưa đọc"
+    }
+  },
+  "editableList": {
+    "placeholder": "Nhập nội dung…",
+    "addItem": "Thêm mục",
+    "empty": "Chưa có mục nào.",
+    "itemAria": "Mục {{index}}",
+    "removeItemAria": "Xóa mục {{index}}"
+  },
+  "imageUploader": {
+    "uploading": "Đang tải lên...",
+    "dropHint": "Kéo thả ảnh vào đây hoặc nhấp để tải lên",
+    "formats": "PNG, JPG, WebP — tối đa 5 MB mỗi ảnh",
+    "clickCoverHint": "Nhấp vào ảnh để đặt làm ảnh bìa.",
+    "coverImage": "Ảnh bìa ({{index}} / {{total}})",
+    "setImageAsCover": "Đặt ảnh {{index}} làm bìa",
+    "setCover": "Đặt làm bìa",
+    "cover": "Bìa",
+    "removeImage": "Xóa ảnh {{index}}",
+    "productImage": "Ảnh sản phẩm {{index}}"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "header": {
+    "brandName": "PLT Solutions",
+    "tagline": "Danh mục sản phẩm",
+    "getInTouch": "Liên hệ"
+  },
+  "nav": {
+    "products": "Sản phẩm",
+    "featured": "Nổi bật",
+    "stack": "Công nghệ",
+    "contact": "Liên hệ"
+  },
+  "hero": {
+    "eyebrow": "Danh mục sản phẩm",
+    "title": "Ứng dụng web cho",
+    "titleHighlight": "trải nghiệm cao cấp",
+    "description": "PLT Solutions xây dựng các sản phẩm SaaS hiện đại — từ nền tảng doanh nghiệp đến bảng điều khiển phân tích. Khám phá danh mục ứng dụng web sẵn sàng triển khai của chúng tôi.",
+    "viewProducts": "Xem sản phẩm",
+    "contactUs": "Liên hệ",
+    "productsShipped": "Sản phẩm đã phát hành",
+    "technologies": "Công nghệ"
+  },
+  "featured": {
+    "eyebrow": "Sản phẩm chủ lực",
+    "title": "Sẵn sàng mở rộng, thiết kế ấn tượng",
+    "description": "Cuộn qua các ứng dụng chủ lực — mỗi sản phẩm được tối ưu cho hiệu năng, rõ ràng và trải nghiệm người dùng cao cấp."
+  },
+  "catalog": {
+    "eyebrow": "Tất cả sản phẩm",
+    "title": "Danh mục sản phẩm đầy đủ",
+    "description": "Mọi ứng dụng trong danh mục — từ phân tích đến công cụ lập trình — được xây dựng với cùng cam kết về chất lượng.",
+    "loading": "Đang tải sản phẩm...",
+    "error": "Không thể tải sản phẩm. Vui lòng thử lại sau."
+  },
+  "stack": {
+    "eyebrow": "Công nghệ",
+    "title": "Xây dựng bằng công cụ hiện đại",
+    "description": "Sản phẩm của chúng tôi được vận hành bởi các framework và hạ tầng đã được kiểm chứng — lựa chọn vì tốc độ, độ tin cậy và trải nghiệm lập trình viên."
+  },
+  "contact": {
+    "eyebrow": "Liên hệ",
+    "title": "Cùng xây dựng điều tuyệt vời",
+    "description": "Quan tâm đến sản phẩm của chúng tôi hoặc muốn hợp tác? Gửi tin nhắn và chúng tôi sẽ phản hồi trong vòng 24 giờ.",
+    "form": {
+      "name": "Họ tên",
+      "email": "Email",
+      "company": "Công ty",
+      "companyOptional": "(tùy chọn)",
+      "message": "Tin nhắn",
+      "namePlaceholder": "Họ tên của bạn",
+      "emailPlaceholder": "ban@congty.com",
+      "companyPlaceholder": "Tên công ty",
+      "messagePlaceholder": "Hãy cho chúng tôi biết về dự án của bạn..."
+    },
+    "success": "Tin nhắn đã được gửi! Chúng tôi sẽ phản hồi trong vòng 24 giờ.",
+    "error": "Gửi tin nhắn thất bại. Vui lòng thử lại.",
+    "footerDescription": "Chúng tôi thiết kế và phát triển ứng dụng web cao cấp — từ nền tảng phân tích đến công cụ lập trình — xây dựng cho quy mô và chất lượng.",
+    "quickLinks": "Liên kết nhanh",
+    "company": "Công ty",
+    "getInTouch": "Liên hệ",
+    "hours": "Thứ 2 – Thứ 6, 9:00 – 18:00 (ICT)",
+    "copyright": "PLT Solutions. Bảo lưu mọi quyền."
+  },
+  "footerLinks": {
+    "aboutUs": "Về chúng tôi",
+    "careers": "Tuyển dụng",
+    "blog": "Blog",
+    "caseStudies": "Case study",
+    "privacyPolicy": "Chính sách bảo mật",
+    "termsOfService": "Điều khoản dịch vụ",
+    "cookiePolicy": "Chính sách cookie"
+  },
+  "social": {
+    "instagram": "Instagram",
+    "youtube": "Youtube",
+    "facebook": "Facebook",
+    "email": "Email"
+  }
+}

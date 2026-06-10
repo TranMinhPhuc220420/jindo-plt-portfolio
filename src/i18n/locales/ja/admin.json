@@ -1,0 +1,150 @@
+{
+  "sidebar": {
+    "label": "Admin",
+    "products": "製品",
+    "contacts": "お問い合わせ"
+  },
+  "pages": {
+    "products": "製品",
+    "contacts": "お問い合わせ",
+    "newProduct": "新規製品",
+    "editProduct": "製品を編集",
+    "admin": "Admin"
+  },
+  "login": {
+    "title": "PLT Admin",
+    "subtitle": "ポートフォリオを管理するにはサインインしてください",
+    "email": "メール",
+    "password": "パスワード",
+    "emailPlaceholder": "admin@example.com",
+    "signIn": "サインイン",
+    "signingIn": "サインイン中...",
+    "error": "ログインに失敗しました。もう一度お試しください。"
+  },
+  "products": {
+    "description": "公開ポートフォリオに表示される製品を管理します。",
+    "addProduct": "製品を追加",
+    "empty": "製品がまだありません。",
+    "deleteConfirm": "「{{title}}」を削除しますか？この操作は元に戻せません。",
+    "backToProducts": "製品一覧に戻る",
+    "newProduct": "新規製品",
+    "editProduct": "製品を編集",
+    "newDescription": "公開ポートフォリオに製品を追加します。",
+    "editDescription": "{{title}} を編集中",
+    "requiredFields": "ID、タイトル、説明は必須です。",
+    "saving": "保存中…",
+    "createProduct": "製品を作成",
+    "saveChanges": "変更を保存",
+    "table": {
+      "title": "タイトル",
+      "category": "カテゴリ",
+      "status": "ステータス",
+      "featured": "注目",
+      "actions": "操作"
+    },
+    "sections": {
+      "basics": {
+        "title": "基本情報",
+        "description": "製品カードと詳細ページに表示されるコアコンテンツ。"
+      },
+      "classification": {
+        "title": "分類",
+        "description": "カタログでの製品の分類と並び順。"
+      },
+      "tagsHighlights": {
+        "title": "タグとハイライト",
+        "description": "タグはカンマ区切り、ハイライトは編集可能なリスト。"
+      },
+      "media": {
+        "title": "メディア",
+        "description": "最初の画像が一覧のカバーとして使用されます。"
+      },
+      "links": {
+        "title": "リンク",
+        "description": "ライブデモとソースコードのオプションURL。"
+      }
+    },
+    "fields": {
+      "id": "ID (slug)",
+      "idHint": "URLセーフな識別子。空の場合はタイトルから生成されます。",
+      "idPlaceholder": "my-product",
+      "willBeSavedAs": "保存形式",
+      "title": "タイトル",
+      "titlePlaceholder": "製品名",
+      "shortDescription": "短い説明",
+      "shortDescriptionHint": "カードと一覧用の1〜2文。",
+      "longDescription": "詳細説明",
+      "longDescriptionHint": "注目製品パネル用の完全な概要。",
+      "longDescriptionPlaceholder": "詳細ページ用の拡張説明…",
+      "category": "カテゴリ",
+      "categoryPlaceholder": "Analytics, DevTools…",
+      "sortOrder": "並び順",
+      "sortOrderHint": "小さい数字ほど先に表示されます。",
+      "status": "ステータス",
+      "gridLayout": "グリッドレイアウト",
+      "featuredProduct": "注目製品",
+      "featuredProductHint": "ホームページのスティッキースクロールセクションに表示。",
+      "featuredProductAria": "注目製品",
+      "tags": "タグ",
+      "tagsHint": "技術やテーマ、例: React, PostgreSQL",
+      "tagsPlaceholder": "React, Node.js, PostgreSQL",
+      "highlights": "ハイライト",
+      "highlightsHint": "注目スクロールパネルに表示 — 1行1ポイント。",
+      "highlightsPlaceholder": "例: リアルタイム同期",
+      "highlightsAdd": "ハイライトを追加",
+      "highlightsEmpty": "ハイライトがまだありません。注目製品の主要なセールスポイントを追加してください。",
+      "liveUrl": "ライブURL",
+      "liveUrlPlaceholder": "https://app.example.com",
+      "repoUrl": "リポジトリURL",
+      "repoUrlPlaceholder": "https://github.com/org/repo"
+    },
+    "layout": {
+      "featured": "注目",
+      "standard": "標準",
+      "wide": "ワイド",
+      "tall": "トール"
+    }
+  },
+  "contacts": {
+    "description": "公開ポートフォリオサイトからのお問い合わせ。",
+    "deleteSelected": "選択を削除 ({{count}})",
+    "empty": "お問い合わせがまだありません。",
+    "deleteConfirm": "「{{name}}」からの送信を削除しますか？この操作は元に戻せません。",
+    "bulkDeleteConfirm": "{{count}} 件の送信を削除しますか？この操作は元に戻せません。",
+    "markAsRead": "既読にする",
+    "marking": "マーク中...",
+    "deleting": "削除中...",
+    "table": {
+      "selectAll": "すべてのお問い合わせを選択",
+      "selectContact": "{{name}} を選択",
+      "name": "名前",
+      "email": "メール",
+      "company": "会社",
+      "message": "メッセージ",
+      "date": "日付",
+      "status": "ステータス",
+      "actions": "操作",
+      "read": "既読",
+      "unread": "未読"
+    }
+  },
+  "editableList": {
+    "placeholder": "テキストを入力…",
+    "addItem": "項目を追加",
+    "empty": "項目がまだありません。",
+    "itemAria": "項目 {{index}}",
+    "removeItemAria": "項目 {{index}} を削除"
+  },
+  "imageUploader": {
+    "uploading": "アップロード中...",
+    "dropHint": "画像をここにドロップするか、クリックしてアップロード",
+    "formats": "PNG, JPG, WebP — 各最大5 MB",
+    "clickCoverHint": "画像をクリックしてカバーに設定します。",
+    "coverImage": "カバー画像 ({{index}} / {{total}})",
+    "setImageAsCover": "画像 {{index}} をカバーに設定",
+    "setCover": "カバーに設定",
+    "cover": "カバー",
+    "removeImage": "画像 {{index}} を削除",
+    "productImage": "製品画像 {{index}}"
+  }
+}

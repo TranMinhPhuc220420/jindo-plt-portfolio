@@ -1,5 +1,6 @@
+import { useTranslation } from 'react-i18next'
 import { motion } from 'framer-motion'
-import { ArrowRight, Sparkles } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { Button } from '../ui/Button'
 import { Container } from '../layout/Container'
 import { HeroVisual } from './HeroVisual'
@@ -14,33 +15,32 @@ const fadeUp = {
 }
 
 export function HeroSection() {
+  const { t } = useTranslation('public')
+
   return (
     <section className="relative overflow-hidden pt-28 pb-20 md:pt-36 md:pb-28">
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="text-center lg:text-left">
-            <motion.div
+            <motion.p
               custom={0}
               initial="hidden"
               animate="visible"
               variants={fadeUp}
-              className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-medium text-primary"
+              className="eyebrow mb-6"
             >
-              <Sparkles size={14} />
-              Product Portfolio
-            </motion.div>
+              {t('hero.eyebrow')}
+            </motion.p>
 
             <motion.h1
               custom={1}
               initial="hidden"
               animate="visible"
               variants={fadeUp}
-              className="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl md:text-6xl md:leading-[1.08]"
+              className="text-display text-foreground sm:text-5xl md:text-6xl"
             >
-              Web apps built for{' '}
-              <span className="bg-gradient-to-r from-primary to-violet-600 dark:to-violet-300 bg-clip-text text-transparent">
-                premium experiences
-              </span>
+              {t('hero.title')}{' '}
+              <span className="text-primary">{t('hero.titleHighlight')}</span>
             </motion.h1>
 
             <motion.p
@@ -48,11 +48,9 @@ export function HeroSection() {
               initial="hidden"
               animate="visible"
               variants={fadeUp}
-              className="mt-6 max-w-xl text-base text-muted sm:text-lg lg:mx-0 mx-auto"
+              className="mt-6 max-w-xl text-muted sm:text-lg lg:mx-0 mx-auto"
             >
-              PLT Solutions crafts modern SaaS products — from enterprise platforms
-              to analytics dashboards. Explore our portfolio of production-ready web
-              applications.
+              {t('hero.description')}
             </motion.p>
 
             <motion.div
@@ -63,11 +61,11 @@ export function HeroSection() {
               className="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start"
             >
               <Button href="#products">
-                View Products
+                {t('hero.viewProducts')}
                 <ArrowRight size={16} />
               </Button>
               <Button href="#contact" variant="ghost">
-                Contact us
+                {t('hero.contactUs')}
               </Button>
             </motion.div>
 
@@ -80,12 +78,12 @@ export function HeroSection() {
             >
               <div>
                 <span className="block text-2xl font-semibold text-foreground">6+</span>
-                Products shipped
+                {t('hero.productsShipped')}
               </div>
               <div className="h-8 w-px bg-border" />
               <div>
                 <span className="block text-2xl font-semibold text-foreground">12+</span>
-                Technologies
+                {t('hero.technologies')}
               </div>
             </motion.div>
           </div>

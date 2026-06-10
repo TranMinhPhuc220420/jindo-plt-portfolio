@@ -1,0 +1,45 @@
+{
+  "language": {
+    "vi": "Tiếng Việt",
+    "en": "English",
+    "ja": "日本語"
+  },
+  "aria": {
+    "selectLanguage": "Select language",
+    "languageOptions": "Language options",
+    "selectTheme": "Select theme",
+    "themeOptions": "Theme options",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "openSidebar": "Open menu",
+    "closeSidebar": "Close sidebar",
+    "close": "Close"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "status": {
+    "live": "Live",
+    "beta": "Beta",
+    "internal": "Internal"
+  },
+  "actions": {
+    "viewLive": "View live",
+    "source": "Source",
+    "sendMessage": "Send message",
+    "sending": "Sending...",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "save": "Save",
+    "yes": "Yes",
+    "no": "No",
+    "logout": "Logout"
+  },
+  "loading": {
+    "products": "Loading products...",
+    "contacts": "Loading contacts..."
+  }
+}

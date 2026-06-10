@@ -3,8 +3,8 @@ export const THEME_STORAGE_KEY = 'plt-theme'
 export const THEME_OPTIONS = ['light', 'dark', 'system']
 
 const THEME_COLORS = {
-  light: '#fafafa',
-  dark: '#0a0a0b',
+  light: '#F1F3F5',
+  dark: '#0B0F19',
 }
 
 export function getSystemTheme() {
