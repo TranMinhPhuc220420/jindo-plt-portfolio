@@ -1,16 +1,18 @@
 import { useTranslation } from 'react-i18next'
 import { RootLayout } from './app/layout/RootLayout'
 import { HeroSection } from './components/hero/HeroSection'
-import { AppShortcutGrid } from './components/products/AppShortcutGrid'
+import { AppShortcutGroupedGrid } from './components/products/AppShortcutGroupedGrid'
 import { Section } from './components/layout/Section'
 import { TechStackMarquee } from './components/tech/TechStackMarquee'
 import { ContactFooter } from './components/contact/ContactFooter'
 import { useProducts } from './hooks/useProducts'
+import { useCategories } from './hooks/useCategories'
 import { techStack } from './data/tech-stack'
 
 function App() {
   const { t } = useTranslation('public')
   const { products, loading, error } = useProducts()
+  const { categories, loading: categoriesLoading } = useCategories()
 
   return (
     <RootLayout>
@@ -23,12 +25,12 @@ function App() {
           </h2>
           <p className="mt-4 max-w-2xl text-muted">{t('catalog.description')}</p>
         </div>
-        {loading ? (
+        {loading || categoriesLoading ? (
           <p className="py-20 text-center text-muted">{t('catalog.loading')}</p>
         ) : error ? (
           <p className="py-20 text-center text-red-400">{t('catalog.error')}</p>
         ) : (
-          <AppShortcutGrid products={products} />
+          <AppShortcutGroupedGrid categories={categories} products={products} />
         )}
       </Section>
       <TechStackMarquee items={techStack} />

@@ -40,6 +40,7 @@
   },
   "loading": {
     "products": "Đang tải sản phẩm...",
+    "categories": "Đang tải danh mục...",
     "contacts": "Đang tải liên hệ..."
   }
 }

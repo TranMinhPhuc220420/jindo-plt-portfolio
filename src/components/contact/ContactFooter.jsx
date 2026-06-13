@@ -6,20 +6,16 @@ import { Button } from '../ui/Button'
 import { Container } from '../layout/Container'
 import { supabase } from '../../lib/supabase'
 import { inputClassName } from '../ui/inputStyles'
+import { useFooterSettings } from '../../hooks/useFooterSettings'
 
 import instagramLogo from '../../assets/icons/instagram.png'
 import youtubeLogo from '../../assets/icons/youtube.png'
 import facebookLogo from '../../assets/icons/facebook.png'
 import mailLogo from '../../assets/icons/mail.png'
 
-const contactInfo = {
-  address: '72 Nguyen Hue Boulevard, District 1, Ho Chi Minh City 700000, Vietnam',
-  phone: '+84 28 3822 4567',
-  email: 'hello@pltsolutions.com',
-}
-
 export function ContactFooter() {
   const { t } = useTranslation('public')
+  const { settings } = useFooterSettings()
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -30,11 +26,35 @@ export function ContactFooter() {
   const [status, setStatus] = useState(null)
 
   const socialLinks = [
-    { icon: instagramLogo, labelKey: 'social.instagram' },
-    { icon: youtubeLogo, labelKey: 'social.youtube' },
-    { icon: facebookLogo, labelKey: 'social.facebook' },
-    { icon: mailLogo, labelKey: 'social.email' },
-  ]
+    {
+      icon: instagramLogo,
+      labelKey: 'social.instagram',
+      href: settings.socialInstagramUrl,
+      enabled: settings.socialInstagramEnabled,
+    },
+    {
+      icon: youtubeLogo,
+      labelKey: 'social.youtube',
+      href: settings.socialYoutubeUrl,
+      enabled: settings.socialYoutubeEnabled,
+    },
+    {
+      icon: facebookLogo,
+      labelKey: 'social.facebook',
+      href: settings.socialFacebookUrl,
+      enabled: settings.socialFacebookEnabled,
+    },
+    {
+      icon: mailLogo,
+      labelKey: 'social.email',
+      href: `mailto:${settings.email}`,
+      enabled: settings.socialEmailEnabled,
+    },
+  ].filter((link) => link.enabled)
+
+  function socialHref(url) {
+    return url?.trim() || '#'
+  }
 
   const quickLinks = [
     { labelKey: 'nav.products', href: '#products' },
@@ -93,15 +113,15 @@ export function ContactFooter() {
               <p className="mt-4 text-muted">{t('contact.description')}</p>
 
               <div className="mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-                <Button href="#">
+                <Button href={`mailto:${settings.email}`}>
                   <Mail size={16} />
-                  {contactInfo.email}
+                  {settings.email}
                 </Button>
                 <div className="flex gap-3">
-                  {socialLinks.map(({ icon, labelKey }) => (
+                  {socialLinks.map(({ icon, labelKey, href }) => (
                     <a
                       key={labelKey}
-                      href="#"
+                      href={socialHref(href)}
                       className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-overlay text-muted transition-colors hover:border-primary/30 hover:text-primary"
                       aria-label={t(labelKey)}
                     >
@@ -204,10 +224,10 @@ export function ContactFooter() {
               {t('contact.footerDescription')}
             </p>
             <div className="mt-5 flex gap-3">
-              {socialLinks.map(({ icon, labelKey }) => (
+              {socialLinks.map(({ icon, labelKey, href }) => (
                 <a
                   key={labelKey}
-                  href="#"
+                  href={socialHref(href)}
                   className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-overlay text-muted transition-colors hover:border-primary/30 hover:text-primary"
                   aria-label={t(labelKey)}
                 >
@@ -254,18 +274,18 @@ export function ContactFooter() {
             <ul className="mt-4 space-y-3">
               <li className="flex gap-2.5 text-sm text-muted">
                 <MapPin size={16} className="mt-0.5 shrink-0 text-primary" aria-hidden="true" />
-                <span>{contactInfo.address}</span>
+                <span>{settings.address}</span>
               </li>
               <li className="flex gap-2.5 text-sm text-muted">
                 <Phone size={16} className="shrink-0 text-primary" aria-hidden="true" />
-                <span>{contactInfo.phone}</span>
+                <span>{settings.phone}</span>
               </li>
               <li className="flex gap-2.5 text-sm text-muted">
                 <Mail size={16} className="shrink-0 text-primary" aria-hidden="true" />
-                <span>{contactInfo.email}</span>
+                <span>{settings.email}</span>
               </li>
             </ul>
-            <p className="mt-4 text-xs text-muted">{t('contact.hours')}</p>
+            <p className="mt-4 text-xs text-muted">{settings.businessHours}</p>
           </div>
         </div>
 

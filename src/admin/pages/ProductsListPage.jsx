@@ -19,7 +19,7 @@ export function ProductsListPage() {
   const loadProducts = useCallback(async () => {
     const { data, error: fetchError } = await supabase
       .from('products')
-      .select('*')
+      .select('*, category:categories(id, name)')
       .order('sort_order', { ascending: true })
 
     if (fetchError) {

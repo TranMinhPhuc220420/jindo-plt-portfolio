@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink } from 'react-router-dom'
-import { Mail, Package, X } from 'lucide-react'
+import { FolderOpen, LayoutTemplate, Mail, Package, X } from 'lucide-react'
 import logoImg from '../../assets/hero.png'
 import { cn } from '../../lib/cn'
 import { supabase } from '../../lib/supabase'
@@ -12,6 +12,8 @@ export function AdminSidebar({ open, onClose }) {
 
   const navItems = [
     { to: '/admin/products', label: t('sidebar.products'), icon: Package },
+    { to: '/admin/categories', label: t('sidebar.categories'), icon: FolderOpen },
+    { to: '/admin/footer', label: t('sidebar.footer'), icon: LayoutTemplate },
     { to: '/admin/contacts', label: t('sidebar.contacts'), icon: Mail, showBadge: true },
   ]
 

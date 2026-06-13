@@ -2,13 +2,19 @@
   "sidebar": {
     "label": "Admin",
     "products": "Sản phẩm",
-    "contacts": "Liên hệ"
+    "categories": "Danh mục",
+    "contacts": "Liên hệ",
+    "footer": "Footer"
   },
   "pages": {
     "products": "Sản phẩm",
+    "categories": "Danh mục",
     "contacts": "Liên hệ",
+    "footer": "Footer",
     "newProduct": "Sản phẩm mới",
     "editProduct": "Sửa sản phẩm",
+    "newCategory": "Danh mục mới",
+    "editCategory": "Sửa danh mục",
     "admin": "Admin"
   },
   "login": {
@@ -69,6 +75,7 @@
     "table": {
       "icon": "Icon",
       "title": "Tiêu đề",
+      "category": "Danh mục",
       "url": "URL",
       "actions": "Thao tác",
       "dragProduct": "Kéo để sắp xếp {{title}}"
@@ -112,6 +119,7 @@
       "longDescriptionHint": "Tổng quan đầy đủ cho panel sản phẩm nổi bật.",
       "longDescriptionPlaceholder": "Mô tả chi tiết cho trang chi tiết…",
       "category": "Danh mục",
+      "categoryNone": "Không có danh mục",
       "categoryPlaceholder": "Analytics, DevTools…",
       "sortOrder": "Thứ tự sắp xếp",
       "sortOrderHint": "Số nhỏ hơn hiển thị trước.",
@@ -148,6 +156,90 @@
       "standard": "Tiêu chuẩn",
       "wide": "Rộng",
       "tall": "Cao"
+    }
+  },
+  "categories": {
+    "description": "Quản lý danh mục sản phẩm hiển thị theo nhóm trên trang chủ. Kéo thả các dòng để đổi thứ tự.",
+    "reorderHint": "Kéo biểu tượng ⋮⋮ để sắp xếp các nhóm danh mục trên trang chủ.",
+    "reordering": "Đang lưu thứ tự mới…",
+    "reorderError": "Không thể lưu thứ tự mới. Vui lòng thử lại.",
+    "addCategory": "Thêm danh mục",
+    "empty": "Chưa có danh mục nào.",
+    "deleteConfirm": "Xóa \"{{name}}\"? Các sản phẩm trong danh mục này sẽ không còn danh mục.",
+    "backToCategories": "Quay lại danh mục",
+    "newCategory": "Danh mục mới",
+    "editCategory": "Sửa danh mục",
+    "newDescription": "Thêm danh mục để nhóm sản phẩm trên trang chủ.",
+    "editDescription": "Đang sửa {{name}}",
+    "saving": "Đang lưu…",
+    "createCategory": "Tạo danh mục",
+    "saveChanges": "Lưu thay đổi",
+    "form": {
+      "nameHint": "Hiển thị làm tiêu đề nhóm trên trang chủ.",
+      "advanced": "Tùy chọn nâng cao",
+      "footerReady": "Sẵn sàng lưu.",
+      "footerIncomplete": "Điền các trường bắt buộc để tiếp tục.",
+      "errors": {
+        "nameRequired": "Tên danh mục là bắt buộc.",
+        "idInvalid": "ID chỉ được chứa chữ thường, số và dấu gạch ngang."
+      }
+    },
+    "table": {
+      "name": "Tên",
+      "id": "ID",
+      "actions": "Thao tác",
+      "dragCategory": "Kéo để sắp xếp {{name}}"
+    },
+    "fields": {
+      "name": "Tên",
+      "namePlaceholder": "Analytics",
+      "id": "ID (slug)",
+      "idHint": "Định danh an toàn cho URL. Để trống để tạo từ tên.",
+      "idPlaceholder": "analytics",
+      "willBeSavedAs": "Sẽ được lưu là"
+    }
+  },
+  "footer": {
+    "title": "Cài đặt Footer",
+    "description": "Quản lý thông tin liên hệ và liên kết mạng xã hội hiển thị trên footer.",
+    "saving": "Đang lưu…",
+    "saveChanges": "Lưu thay đổi",
+    "saveSuccess": "Đã lưu cài đặt footer thành công.",
+    "sections": {
+      "contact": "Thông tin liên hệ",
+      "social": "Mạng xã hội",
+      "socialHint": "Bật/tắt từng nền tảng. URL là tùy chọn khi đã bật."
+    },
+    "fields": {
+      "address": "Địa chỉ",
+      "addressPlaceholder": "72 Nguyen Hue Boulevard, Quận 1, TP. Hồ Chí Minh",
+      "phone": "Điện thoại",
+      "phonePlaceholder": "+84 28 3822 4567",
+      "email": "Email",
+      "emailPlaceholder": "hello@pltsolutions.com",
+      "businessHours": "Giờ làm việc",
+      "businessHoursHint": "Hiển thị bên dưới thông tin liên hệ trong footer.",
+      "businessHoursPlaceholder": "Thứ 2 – Thứ 6, 9:00 – 18:00 (ICT)",
+      "socialInstagram": "Instagram",
+      "socialYoutube": "YouTube",
+      "socialFacebook": "Facebook",
+      "socialEmail": "Icon Email",
+      "socialEmailHint": "Dùng email liên hệ ở trên làm liên kết mailto.",
+      "url": "URL",
+      "visible": "Hiển thị",
+      "hidden": "Ẩn"
+    },
+    "form": {
+      "footerReady": "Sẵn sàng lưu.",
+      "footerIncomplete": "Điền các trường bắt buộc để tiếp tục.",
+      "errors": {
+        "addressRequired": "Địa chỉ là bắt buộc.",
+        "phoneRequired": "Số điện thoại là bắt buộc.",
+        "emailRequired": "Email là bắt buộc.",
+        "emailInvalid": "Nhập địa chỉ email hợp lệ.",
+        "businessHoursRequired": "Giờ làm việc là bắt buộc.",
+        "urlInvalid": "Nhập URL hợp lệ bắt đầu bằng http:// hoặc https://."
+      }
     }
   },
   "contacts": {

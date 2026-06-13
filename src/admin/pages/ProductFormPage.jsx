@@ -18,6 +18,7 @@ const emptyProduct = {
   iconUrl: '',
   url: '',
   sortOrder: 0,
+  categoryId: null,
 }
 
 function slugify(text) {
@@ -58,6 +59,7 @@ export function ProductFormPage() {
   const [error, setError] = useState('')
   const [fieldErrors, setFieldErrors] = useState({})
   const [touched, setTouched] = useState({})
+  const [categories, setCategories] = useState([])
 
   const resolvedSlug = useMemo(
     () => slugify(product.id || product.title),
@@ -71,6 +73,17 @@ export function ProductFormPage() {
       Object.keys(validateProduct(product, isNew, t)).length === 0
     )
   }, [product, isNew, t])
+
+  useEffect(() => {
+    async function fetchCategories() {
+      const { data } = await supabase
+        .from('categories')
+        .select('*')
+        .order('sort_order', { ascending: true })
+      setCategories((data ?? []).map((row) => ({ id: row.id, name: row.name })))
+    }
+    fetchCategories()
+  }, [])
 
   useEffect(() => {
     if (isNew) return
@@ -257,6 +270,30 @@ export function ProductFormPage() {
                   )}
                 </div>
               </Field>
+
+              <div className="border-t border-border-subtle pt-6">
+                <Field
+                  label={t('admin:products.sections.classification.title')}
+                  hint={t('admin:products.sections.classification.description')}
+                  htmlFor="product-category"
+                >
+                  <select
+                    id="product-category"
+                    value={product.categoryId ?? ''}
+                    onChange={(e) =>
+                      updateField('categoryId', e.target.value || null)
+                    }
+                    className={inputClassName}
+                  >
+                    <option value="">{t('admin:products.fields.categoryNone')}</option>
+                    {categories.map((cat) => (
+                      <option key={cat.id} value={cat.id}>
+                        {cat.name}
+                      </option>
+                    ))}
+                  </select>
+                </Field>
+              </div>
 
               <div className="border-t border-border-subtle pt-6">
                 <Field

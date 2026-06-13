@@ -6,60 +6,22 @@ import { cn } from '../../lib/cn'
 import { usePointerRowReorder } from '../hooks/usePointerRowReorder'
 
 const ROW_GRID =
-  'grid grid-cols-[2.25rem_2.5rem_minmax(0,1fr)_minmax(0,0.8fr)_minmax(0,1.2fr)_auto] items-center gap-3 px-4 py-3'
+  'grid grid-cols-[2.25rem_minmax(0,1fr)_minmax(0,1fr)_auto] items-center gap-3 px-4 py-3'
 
-function IconThumbnail({ iconUrl, title }) {
-  if (iconUrl) {
-    return (
-      <img
-        src={iconUrl}
-        alt=""
-        className="h-8 w-8 rounded-lg border border-border object-cover"
-      />
-    )
-  }
-  return (
-    <span className="flex h-8 w-8 items-center justify-center rounded-lg border border-border bg-overlay text-xs font-semibold text-primary">
-      {title?.charAt(0).toUpperCase() || '?'}
-    </span>
-  )
-}
-
-function ProductRowContent({ product, onDelete, dragHandle, className }) {
+function CategoryRowContent({ category, onDelete, dragHandle, className }) {
   const { t } = useTranslation(['admin', 'common'])
 
   return (
     <div className={cn(ROW_GRID, className)}>
       {dragHandle}
 
-      <IconThumbnail iconUrl={product.iconUrl} title={product.title} />
+      <span className="truncate font-medium text-foreground">{category.name}</span>
 
-      <span className="truncate font-medium text-foreground">{product.title}</span>
-
-      <span className="truncate text-sm text-muted">
-        {product.categoryName || '—'}
-      </span>
-
-      <span className="truncate text-muted">
-        {product.url ? (
-          <a
-            href={product.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-primary"
-            onClick={(e) => e.stopPropagation()}
-            onPointerDown={(e) => e.stopPropagation()}
-          >
-            {product.url}
-          </a>
-        ) : (
-          '—'
-        )}
-      </span>
+      <span className="truncate font-mono text-sm text-muted">{category.id}</span>
 
       <div className="flex items-center justify-end gap-2">
         <Link
-          to={`/admin/products/${product.id}`}
+          to={`/admin/categories/${category.id}`}
           className="inline-flex items-center gap-1 rounded-lg border border-border px-2.5 py-1.5 text-xs text-muted transition-colors hover:border-primary/30 hover:text-primary"
           onClick={(e) => e.stopPropagation()}
           onPointerDown={(e) => e.stopPropagation()}
@@ -71,7 +33,7 @@ function ProductRowContent({ product, onDelete, dragHandle, className }) {
           type="button"
           onClick={(e) => {
             e.stopPropagation()
-            onDelete(product)
+            onDelete(category)
           }}
           onPointerDown={(e) => e.stopPropagation()}
           className="inline-flex items-center gap-1 rounded-lg border border-border px-2.5 py-1.5 text-xs text-muted transition-colors hover:border-red-500/30 hover:text-red-400"
@@ -103,8 +65,8 @@ function DragHandle({ label, onPointerDown, isDragging }) {
   )
 }
 
-function DragOverlay({ overlay, product }) {
-  if (!overlay || !product) return null
+function DragOverlay({ overlay, category }) {
+  if (!overlay || !category) return null
 
   return createPortal(
     <div
@@ -116,8 +78,8 @@ function DragOverlay({ overlay, product }) {
         transform: 'translateX(0)',
       }}
     >
-      <ProductRowContent
-        product={product}
+      <CategoryRowContent
+        category={category}
         onDelete={() => {}}
         dragHandle={
           <div className="flex h-8 w-8 cursor-grabbing items-center justify-center rounded-md bg-primary/10 text-primary">
@@ -131,7 +93,7 @@ function DragOverlay({ overlay, product }) {
   )
 }
 
-export function ProductTable({ products, onReorder, onDelete, reordering }) {
+export function CategoryTable({ categories, onReorder, onDelete, reordering }) {
   const { t } = useTranslation('admin')
 
   const {
@@ -142,25 +104,25 @@ export function ProductTable({ products, onReorder, onDelete, reordering }) {
     startDrag,
     isDragging,
   } = usePointerRowReorder({
-    items: products,
-    getId: (product) => product.id,
+    items: categories,
+    getId: (category) => category.id,
     onReorder,
     disabled: reordering,
   })
 
-  const overlayProduct = overlay
-    ? products.find((product) => product.id === overlay.id)
+  const overlayCategory = overlay
+    ? categories.find((category) => category.id === overlay.id)
     : null
 
-  if (products.length === 0) {
-    return <p className="py-12 text-center text-muted">{t('products.empty')}</p>
+  if (categories.length === 0) {
+    return <p className="py-12 text-center text-muted">{t('categories.empty')}</p>
   }
 
   return (
     <div className="space-y-2">
-      <p className="text-sm text-muted">{t('products.reorderHint')}</p>
+      <p className="text-sm text-muted">{t('categories.reorderHint')}</p>
       <div className="overflow-x-auto rounded-2xl border border-border">
-        <div className="min-w-[720px]">
+        <div className="min-w-[480px]">
           <div
             className={cn(
               ROW_GRID,
@@ -168,22 +130,20 @@ export function ProductTable({ products, onReorder, onDelete, reordering }) {
             )}
           >
             <span aria-hidden="true" />
-            <span>{t('products.table.icon')}</span>
-            <span>{t('products.table.title')}</span>
-            <span>{t('products.table.category')}</span>
-            <span>{t('products.table.url')}</span>
-            <span className="text-right">{t('products.table.actions')}</span>
+            <span>{t('categories.table.name')}</span>
+            <span>{t('categories.table.id')}</span>
+            <span className="text-right">{t('categories.table.actions')}</span>
           </div>
 
           <div className={cn(isDragging && 'select-none')}>
-            {products.map((product) => {
-              const isSource = dragId === product.id
-              const isDropTarget = overId === product.id && dragId !== product.id
+            {categories.map((category) => {
+              const isSource = dragId === category.id
+              const isDropTarget = overId === category.id && dragId !== category.id
 
               return (
                 <div
-                  key={product.id}
-                  ref={(node) => setRowRef(product.id, node)}
+                  key={category.id}
+                  ref={(node) => setRowRef(category.id, node)}
                   className={cn(
                     'relative border-b border-border-subtle bg-background transition-[opacity,background-color] duration-150 last:border-b-0',
                     'hover:bg-overlay-muted/80',
@@ -199,16 +159,16 @@ export function ProductTable({ products, onReorder, onDelete, reordering }) {
                     />
                   )}
 
-                  <ProductRowContent
-                    product={product}
+                  <CategoryRowContent
+                    category={category}
                     onDelete={onDelete}
                     dragHandle={
                       <DragHandle
-                        label={t('products.table.dragProduct', { title: product.title })}
+                        label={t('categories.table.dragCategory', { name: category.name })}
                         isDragging={isSource && isDragging}
                         onPointerDown={(event) => {
                           event.preventDefault()
-                          startDrag(product.id, event)
+                          startDrag(category.id, event)
                         }}
                       />
                     }
@@ -220,7 +180,7 @@ export function ProductTable({ products, onReorder, onDelete, reordering }) {
         </div>
       </div>
 
-      <DragOverlay overlay={overlay} product={overlayProduct} />
+      <DragOverlay overlay={overlay} category={overlayCategory} />
     </div>
   )
 }

@@ -7,6 +7,8 @@ export function mapProductFromDb(row) {
     iconUrl: row.icon_url ?? row.images?.[0] ?? row.preview_image ?? undefined,
     url: row.live_url ?? undefined,
     sortOrder: row.sort_order ?? 0,
+    categoryId: row.category_id ?? null,
+    categoryName: row.category?.name ?? null,
   }
 }
 
@@ -18,8 +20,8 @@ export function mapProductToDb(product) {
     icon_url: product.iconUrl || null,
     live_url: product.url || null,
     sort_order: product.sortOrder ?? 0,
+    category_id: product.categoryId || null,
     description: '',
-    category: '',
     status: 'live',
     tags: [],
     gradient: '',

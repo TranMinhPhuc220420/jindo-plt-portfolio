@@ -2,13 +2,19 @@
   "sidebar": {
     "label": "Admin",
     "products": "Products",
-    "contacts": "Contacts"
+    "categories": "Categories",
+    "contacts": "Contacts",
+    "footer": "Footer"
   },
   "pages": {
     "products": "Products",
+    "categories": "Categories",
     "contacts": "Contacts",
+    "footer": "Footer",
     "newProduct": "New Product",
     "editProduct": "Edit Product",
+    "newCategory": "New Category",
+    "editCategory": "Edit Category",
     "admin": "Admin"
   },
   "login": {
@@ -69,6 +75,7 @@
     "table": {
       "icon": "Icon",
       "title": "Title",
+      "category": "Category",
       "url": "URL",
       "actions": "Actions",
       "dragProduct": "Drag to reorder {{title}}"
@@ -112,6 +119,7 @@
       "longDescriptionHint": "Full overview for the featured product panel.",
       "longDescriptionPlaceholder": "Extended description for detail views…",
       "category": "Category",
+      "categoryNone": "No category",
       "categoryPlaceholder": "Analytics, DevTools…",
       "sortOrder": "Sort order",
       "sortOrderHint": "Lower numbers appear first.",
@@ -148,6 +156,90 @@
       "standard": "Standard",
       "wide": "Wide",
       "tall": "Tall"
+    }
+  },
+  "categories": {
+    "description": "Manage product categories shown as sections on the homepage. Drag rows to change their order.",
+    "reorderHint": "Drag the handle to reorder category sections on the homepage.",
+    "reordering": "Saving new order…",
+    "reorderError": "Could not save the new order. Please try again.",
+    "addCategory": "Add category",
+    "empty": "No categories yet.",
+    "deleteConfirm": "Delete \"{{name}}\"? Products in this category will become uncategorized.",
+    "backToCategories": "Back to categories",
+    "newCategory": "New category",
+    "editCategory": "Edit category",
+    "newDescription": "Add a category to group products on the homepage.",
+    "editDescription": "Editing {{name}}",
+    "saving": "Saving…",
+    "createCategory": "Create category",
+    "saveChanges": "Save changes",
+    "form": {
+      "nameHint": "Shown as a section heading on the homepage.",
+      "advanced": "Advanced options",
+      "footerReady": "Ready to save.",
+      "footerIncomplete": "Fill in the required fields to continue.",
+      "errors": {
+        "nameRequired": "Category name is required.",
+        "idInvalid": "ID can only contain lowercase letters, numbers, and hyphens."
+      }
+    },
+    "table": {
+      "name": "Name",
+      "id": "ID",
+      "actions": "Actions",
+      "dragCategory": "Drag to reorder {{name}}"
+    },
+    "fields": {
+      "name": "Name",
+      "namePlaceholder": "Analytics",
+      "id": "ID (slug)",
+      "idHint": "URL-safe identifier. Leave empty to generate from name.",
+      "idPlaceholder": "analytics",
+      "willBeSavedAs": "Will be saved as"
+    }
+  },
+  "footer": {
+    "title": "Footer settings",
+    "description": "Manage contact information and social media links shown in the site footer.",
+    "saving": "Saving…",
+    "saveChanges": "Save changes",
+    "saveSuccess": "Footer settings saved successfully.",
+    "sections": {
+      "contact": "Contact information",
+      "social": "Social media",
+      "socialHint": "Toggle each platform on or off. URL is optional when enabled."
+    },
+    "fields": {
+      "address": "Address",
+      "addressPlaceholder": "72 Nguyen Hue Boulevard, District 1, Ho Chi Minh City",
+      "phone": "Phone",
+      "phonePlaceholder": "+84 28 3822 4567",
+      "email": "Email",
+      "emailPlaceholder": "hello@pltsolutions.com",
+      "businessHours": "Business hours",
+      "businessHoursHint": "Shown below contact details in the footer.",
+      "businessHoursPlaceholder": "Mon – Fri, 9:00 AM – 6:00 PM (ICT)",
+      "socialInstagram": "Instagram",
+      "socialYoutube": "YouTube",
+      "socialFacebook": "Facebook",
+      "socialEmail": "Email icon",
+      "socialEmailHint": "Uses the contact email above as a mailto link.",
+      "url": "URL",
+      "visible": "Visible",
+      "hidden": "Hidden"
+    },
+    "form": {
+      "footerReady": "Ready to save.",
+      "footerIncomplete": "Fill in the required fields to continue.",
+      "errors": {
+        "addressRequired": "Address is required.",
+        "phoneRequired": "Phone is required.",
+        "emailRequired": "Email is required.",
+        "emailInvalid": "Enter a valid email address.",
+        "businessHoursRequired": "Business hours are required.",
+        "urlInvalid": "Enter a valid URL starting with http:// or https://."
+      }
     }
   },
   "contacts": {

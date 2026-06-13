@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '../lib/supabase'
-import { mapProductFromDb } from '../lib/productMapper'
+import { mapCategoryFromDb } from '../lib/categoryMapper'
 
-export function useProducts() {
-  const [products, setProducts] = useState([])
+export function useCategories() {
+  const [categories, setCategories] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    async function fetchProducts() {
+    async function fetchCategories() {
       const { data, error: fetchError } = await supabase
-        .from('products')
-        .select('*, category:categories(id, name)')
+        .from('categories')
+        .select('*')
         .order('sort_order', { ascending: true })
 
       if (fetchError) {
@@ -20,12 +20,12 @@ export function useProducts() {
         return
       }
 
-      setProducts((data ?? []).map(mapProductFromDb))
+      setCategories((data ?? []).map(mapCategoryFromDb))
       setLoading(false)
     }
 
-    fetchProducts()
+    fetchCategories()
   }, [])
 
-  return { products, loading, error }
+  return { categories, loading, error }
 }

@@ -13,6 +13,10 @@ export function AdminLayout() {
     if (path.startsWith('/admin/products/new')) return t('pages.newProduct')
     if (path.match(/^\/admin\/products\/[^/]+$/)) return t('pages.editProduct')
     if (path === '/admin/products') return t('pages.products')
+    if (path.startsWith('/admin/categories/new')) return t('pages.newCategory')
+    if (path.match(/^\/admin\/categories\/[^/]+$/)) return t('pages.editCategory')
+    if (path === '/admin/categories') return t('pages.categories')
+    if (path === '/admin/footer') return t('pages.footer')
     if (path === '/admin/contacts') return t('pages.contacts')
     return t('pages.admin')
   }

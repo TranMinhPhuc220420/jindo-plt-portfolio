@@ -2,13 +2,19 @@
   "sidebar": {
     "label": "Admin",
     "products": "製品",
-    "contacts": "お問い合わせ"
+    "categories": "カテゴリ",
+    "contacts": "お問い合わせ",
+    "footer": "フッター"
   },
   "pages": {
     "products": "製品",
+    "categories": "カテゴリ",
     "contacts": "お問い合わせ",
+    "footer": "フッター",
     "newProduct": "新規製品",
     "editProduct": "製品を編集",
+    "newCategory": "新規カテゴリ",
+    "editCategory": "カテゴリを編集",
     "admin": "Admin"
   },
   "login": {
@@ -69,6 +75,7 @@
     "table": {
       "icon": "アイコン",
       "title": "タイトル",
+      "category": "カテゴリ",
       "url": "URL",
       "actions": "操作",
       "dragProduct": "{{title}} の順序をドラッグ"
@@ -112,6 +119,7 @@
       "longDescriptionHint": "注目製品パネル用の完全な概要。",
       "longDescriptionPlaceholder": "詳細ページ用の拡張説明…",
       "category": "カテゴリ",
+      "categoryNone": "カテゴリなし",
       "categoryPlaceholder": "Analytics, DevTools…",
       "sortOrder": "並び順",
       "sortOrderHint": "小さい数字ほど先に表示されます。",
@@ -148,6 +156,90 @@
       "standard": "標準",
       "wide": "ワイド",
       "tall": "トール"
+    }
+  },
+  "categories": {
+    "description": "ホームページのセクションとして表示する製品カテゴリを管理します。行をドラッグして並び順を変更できます。",
+    "reorderHint": "ハンドルをドラッグしてホームページのカテゴリセクションの順序を変更します。",
+    "reordering": "並び順を保存中…",
+    "reorderError": "並び順を保存できませんでした。もう一度お試しください。",
+    "addCategory": "カテゴリを追加",
+    "empty": "カテゴリがまだありません。",
+    "deleteConfirm": "「{{name}}」を削除しますか？このカテゴリの製品はカテゴリなしになります。",
+    "backToCategories": "カテゴリ一覧に戻る",
+    "newCategory": "新規カテゴリ",
+    "editCategory": "カテゴリを編集",
+    "newDescription": "ホームページで製品をグループ化するカテゴリを追加します。",
+    "editDescription": "{{name}} を編集中",
+    "saving": "保存中…",
+    "createCategory": "カテゴリを作成",
+    "saveChanges": "変更を保存",
+    "form": {
+      "nameHint": "ホームページのセクション見出しとして表示されます。",
+      "advanced": "詳細オプション",
+      "footerReady": "保存できます。",
+      "footerIncomplete": "必須項目を入力してください。",
+      "errors": {
+        "nameRequired": "カテゴリ名は必須です。",
+        "idInvalid": "IDは小文字、数字、ハイフンのみ使用できます。"
+      }
+    },
+    "table": {
+      "name": "名前",
+      "id": "ID",
+      "actions": "操作",
+      "dragCategory": "{{name}} の並び替え"
+    },
+    "fields": {
+      "name": "名前",
+      "namePlaceholder": "Analytics",
+      "id": "ID（スラッグ）",
+      "idHint": "URLセーフな識別子。空欄の場合は名前から自動生成されます。",
+      "idPlaceholder": "analytics",
+      "willBeSavedAs": "保存されるID"
+    }
+  },
+  "footer": {
+    "title": "フッター設定",
+    "description": "サイトフッターに表示される連絡先情報とソーシャルメディアリンクを管理します。",
+    "saving": "保存中…",
+    "saveChanges": "変更を保存",
+    "saveSuccess": "フッター設定を保存しました。",
+    "sections": {
+      "contact": "連絡先情報",
+      "social": "ソーシャルメディア",
+      "socialHint": "各プラットフォームの表示/非表示を切り替えます。有効時の URL は任意です。"
+    },
+    "fields": {
+      "address": "住所",
+      "addressPlaceholder": "72 Nguyen Hue Boulevard, District 1, Ho Chi Minh City",
+      "phone": "電話番号",
+      "phonePlaceholder": "+84 28 3822 4567",
+      "email": "メール",
+      "emailPlaceholder": "hello@pltsolutions.com",
+      "businessHours": "営業時間",
+      "businessHoursHint": "フッターの連絡先の下に表示されます。",
+      "businessHoursPlaceholder": "月 – 金, 9:00 AM – 6:00 PM (ICT)",
+      "socialInstagram": "Instagram",
+      "socialYoutube": "YouTube",
+      "socialFacebook": "Facebook",
+      "socialEmail": "メールアイコン",
+      "socialEmailHint": "上記の連絡先メールを mailto リンクとして使用します。",
+      "url": "URL",
+      "visible": "表示",
+      "hidden": "非表示"
+    },
+    "form": {
+      "footerReady": "保存できます。",
+      "footerIncomplete": "必須項目を入力してください。",
+      "errors": {
+        "addressRequired": "住所は必須です。",
+        "phoneRequired": "電話番号は必須です。",
+        "emailRequired": "メールは必須です。",
+        "emailInvalid": "有効なメールアドレスを入力してください。",
+        "businessHoursRequired": "営業時間は必須です。",
+        "urlInvalid": "http:// または https:// で始まる有効な URL を入力してください。"
+      }
     }
   },
   "contacts": {

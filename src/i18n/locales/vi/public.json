@@ -24,7 +24,8 @@
     "title": "Ứng dụng web",
     "description": "Nhấn vào ứng dụng để mở trong tab mới.",
     "loading": "Đang tải ứng dụng...",
-    "error": "Không thể tải ứng dụng. Vui lòng thử lại sau."
+    "error": "Không thể tải ứng dụng. Vui lòng thử lại sau.",
+    "uncategorized": "Ứng dụng khác"
   },
   "stack": {
     "eyebrow": "Công nghệ",

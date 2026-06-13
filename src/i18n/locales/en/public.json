@@ -24,7 +24,8 @@
     "title": "Web applications",
     "description": "Click an app to open it in a new tab.",
     "loading": "Loading apps...",
-    "error": "Unable to load apps. Please try again later."
+    "error": "Unable to load apps. Please try again later.",
+    "uncategorized": "Other apps"
   },
   "stack": {
     "eyebrow": "Technology",
