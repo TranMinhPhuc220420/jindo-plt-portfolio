@@ -38,7 +38,6 @@ export function ContactFooter() {
 
   const quickLinks = [
     { labelKey: 'nav.products', href: '#products' },
-    { labelKey: 'nav.featured', href: '#featured' },
     { labelKey: 'nav.stack', href: '#stack' },
     { labelKey: 'nav.contact', href: '#contact' },
   ]

@@ -5,8 +5,7 @@
     "getInTouch": "Get in touch"
   },
   "nav": {
-    "products": "Products",
-    "featured": "Featured",
+    "products": "Apps",
     "stack": "Stack",
     "contact": "Contact"
   },
@@ -20,17 +19,12 @@
     "productsShipped": "Products shipped",
     "technologies": "Technologies"
   },
-  "featured": {
-    "eyebrow": "Flagship Products",
-    "title": "Built to scale, designed to impress",
-    "description": "Scroll through our flagship applications — each engineered for performance, clarity, and a premium user experience."
-  },
   "catalog": {
-    "eyebrow": "All Products",
-    "title": "Full product catalog",
-    "description": "Every application in our portfolio — from analytics to developer tools — built with the same commitment to craft.",
-    "loading": "Loading products...",
-    "error": "Unable to load products. Please try again later."
+    "eyebrow": "Our Apps",
+    "title": "Web applications",
+    "description": "Click an app to open it in a new tab.",
+    "loading": "Loading apps...",
+    "error": "Unable to load apps. Please try again later."
   },
   "stack": {
     "eyebrow": "Technology",

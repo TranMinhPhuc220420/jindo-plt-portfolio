@@ -22,30 +22,65 @@
     "error": "Đăng nhập thất bại. Vui lòng thử lại."
   },
   "products": {
-    "description": "Quản lý sản phẩm hiển thị trên danh mục công khai.",
+    "description": "Quản lý shortcut ứng dụng trên trang chủ. Kéo thả các dòng để đổi thứ tự.",
+    "reorderHint": "Kéo biểu tượng ⋮⋮ để sắp xếp shortcut trên trang chủ.",
+    "reordering": "Đang lưu thứ tự mới…",
+    "reorderError": "Không thể lưu thứ tự mới. Vui lòng thử lại.",
     "addProduct": "Thêm sản phẩm",
     "empty": "Chưa có sản phẩm nào.",
     "deleteConfirm": "Xóa \"{{title}}\"? Hành động này không thể hoàn tác.",
     "backToProducts": "Quay lại danh sách",
     "newProduct": "Sản phẩm mới",
     "editProduct": "Sửa sản phẩm",
-    "newDescription": "Thêm sản phẩm vào danh mục công khai.",
+    "newDescription": "Thêm shortcut ứng dụng vào lưới trang chủ.",
     "editDescription": "Đang sửa {{title}}",
-    "requiredFields": "ID, tiêu đề và mô tả ngắn là bắt buộc.",
+    "requiredFields": "ID, tiêu đề và URL ứng dụng là bắt buộc.",
     "saving": "Đang lưu…",
     "createProduct": "Tạo sản phẩm",
     "saveChanges": "Lưu thay đổi",
+    "form": {
+      "titleHint": "Hiển thị dưới icon trên lưới trang chủ.",
+      "testUrl": "Thử",
+      "advanced": "Tùy chọn nâng cao",
+      "decreaseSort": "Giảm thứ tự",
+      "increaseSort": "Tăng thứ tự",
+      "footerReady": "Sẵn sàng lưu.",
+      "footerIncomplete": "Điền các trường bắt buộc để tiếp tục.",
+      "preview": {
+        "title": "Xem trước",
+        "description": "Shortcut sẽ hiển thị như thế này trên trang chủ.",
+        "placeholderTitle": "Tên ứng dụng"
+      },
+      "checklist": {
+        "heading": "Trước khi lưu",
+        "title": "Đã có tên ứng dụng",
+        "url": "Đã có URL hợp lệ",
+        "icon": "Đã có icon",
+        "optional": "tùy chọn",
+        "ready": "Ổn rồi — bạn có thể lưu."
+      },
+      "errors": {
+        "titleRequired": "Tên ứng dụng là bắt buộc.",
+        "urlRequired": "URL ứng dụng là bắt buộc.",
+        "urlInvalid": "Nhập URL hợp lệ bắt đầu bằng http:// hoặc https://.",
+        "idInvalid": "ID chỉ được chứa chữ thường, số và dấu gạch ngang."
+      }
+    },
     "table": {
+      "icon": "Icon",
       "title": "Tiêu đề",
-      "category": "Danh mục",
-      "status": "Trạng thái",
-      "featured": "Nổi bật",
-      "actions": "Thao tác"
+      "url": "URL",
+      "actions": "Thao tác",
+      "dragProduct": "Kéo để sắp xếp {{title}}"
     },
     "sections": {
       "basics": {
         "title": "Thông tin cơ bản",
-        "description": "Nội dung hiển thị trên thẻ sản phẩm và trang chi tiết."
+        "description": "Tên và thứ tự hiển thị của shortcut ứng dụng."
+      },
+      "icon": {
+        "title": "Icon",
+        "description": "Upload ảnh hoặc dán URL icon từ bên ngoài."
       },
       "classification": {
         "title": "Phân loại",
@@ -60,8 +95,8 @@
         "description": "Ảnh đầu tiên được dùng làm ảnh bìa trong danh sách."
       },
       "links": {
-        "title": "Liên kết",
-        "description": "URL tùy chọn cho demo trực tiếp và mã nguồn."
+        "title": "Liên kết ứng dụng",
+        "description": "URL mở trong tab mới khi người dùng nhấn vào shortcut."
       }
     },
     "fields": {
@@ -93,10 +128,20 @@
       "highlightsPlaceholder": "vd. Đồng bộ thời gian thực",
       "highlightsAdd": "Thêm điểm nổi bật",
       "highlightsEmpty": "Chưa có điểm nổi bật. Thêm các điểm bán hàng chính cho sản phẩm nổi bật.",
+      "appUrl": "URL ứng dụng",
+      "appUrlPlaceholder": "https://app.example.com",
       "liveUrl": "URL trực tiếp",
       "liveUrlPlaceholder": "https://app.example.com",
       "repoUrl": "URL repo",
       "repoUrlPlaceholder": "https://github.com/org/repo"
+    },
+    "iconField": {
+      "upload": "Upload",
+      "url": "URL",
+      "remove": "Xóa icon",
+      "dropHint": "Nhấp để upload icon",
+      "formats": "PNG, JPG, WebP — tối đa 5 MB",
+      "urlPlaceholder": "https://example.com/icon.png"
     },
     "layout": {
       "featured": "Nổi bật",

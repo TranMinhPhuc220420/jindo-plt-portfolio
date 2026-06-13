@@ -5,8 +5,7 @@
     "getInTouch": "Liên hệ"
   },
   "nav": {
-    "products": "Sản phẩm",
-    "featured": "Nổi bật",
+    "products": "Ứng dụng",
     "stack": "Công nghệ",
     "contact": "Liên hệ"
   },
@@ -20,17 +19,12 @@
     "productsShipped": "Sản phẩm đã phát hành",
     "technologies": "Công nghệ"
   },
-  "featured": {
-    "eyebrow": "Sản phẩm chủ lực",
-    "title": "Sẵn sàng mở rộng, thiết kế ấn tượng",
-    "description": "Cuộn qua các ứng dụng chủ lực — mỗi sản phẩm được tối ưu cho hiệu năng, rõ ràng và trải nghiệm người dùng cao cấp."
-  },
   "catalog": {
-    "eyebrow": "Tất cả sản phẩm",
-    "title": "Danh mục sản phẩm đầy đủ",
-    "description": "Mọi ứng dụng trong danh mục — từ phân tích đến công cụ lập trình — được xây dựng với cùng cam kết về chất lượng.",
-    "loading": "Đang tải sản phẩm...",
-    "error": "Không thể tải sản phẩm. Vui lòng thử lại sau."
+    "eyebrow": "Ứng dụng của chúng tôi",
+    "title": "Ứng dụng web",
+    "description": "Nhấn vào ứng dụng để mở trong tab mới.",
+    "loading": "Đang tải ứng dụng...",
+    "error": "Không thể tải ứng dụng. Vui lòng thử lại sau."
   },
   "stack": {
     "eyebrow": "Công nghệ",

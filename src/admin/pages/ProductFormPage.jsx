@@ -1,42 +1,23 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { ArrowLeft, Globe, ImageIcon, Link2, Settings2, Type } from 'lucide-react'
+import { ArrowLeft, ChevronDown, ExternalLink } from 'lucide-react'
 import { Button } from '../../components/ui/Button'
 import { Card } from '../../components/ui/Card'
-import { checkboxClassName, inputClassName } from '../../components/ui/inputStyles'
+import { inputClassName } from '../../components/ui/inputStyles'
 import { cn } from '../../lib/cn'
 import { supabase } from '../../lib/supabase'
-import { ProductImageUploader } from '../components/ProductImageUploader'
-import { EditableStringList } from '../components/EditableStringList'
+import { IconField } from '../components/IconField'
+import { isValidUrl, ShortcutFormPreview } from '../components/ShortcutFormPreview'
+import { getNextSortOrder } from '../../lib/productOrder'
 import { mapProductFromDb, mapProductToDb } from '../../lib/productMapper'
-
-const DEFAULT_GRADIENT = 'from-surface-elevated via-surface to-background'
 
 const emptyProduct = {
   id: '',
   title: '',
-  description: '',
-  longDescription: '',
-  category: '',
-  status: 'live',
-  tags: [],
-  gradient: DEFAULT_GRADIENT,
-  previewImage: '',
-  images: [],
-  liveUrl: '',
-  repoUrl: '',
-  featured: false,
-  layout: 'standard',
-  highlights: [],
+  iconUrl: '',
+  url: '',
   sortOrder: 0,
-}
-
-function parseList(value) {
-  return value
-    .split(',')
-    .map((s) => s.trim())
-    .filter(Boolean)
 }
 
 function slugify(text) {
@@ -46,21 +27,50 @@ function slugify(text) {
     .replace(/^-|-$/g, '')
 }
 
+function validateProduct(product, isNew, t) {
+  const errors = {}
+
+  if (!product.title?.trim()) {
+    errors.title = t('admin:products.form.errors.titleRequired')
+  }
+
+  if (!product.url?.trim()) {
+    errors.url = t('admin:products.form.errors.urlRequired')
+  } else if (!isValidUrl(product.url)) {
+    errors.url = t('admin:products.form.errors.urlInvalid')
+  }
+
+  if (isNew && product.id && !/^[a-z0-9-]+$/.test(product.id)) {
+    errors.id = t('admin:products.form.errors.idInvalid')
+  }
+
+  return errors
+}
+
 export function ProductFormPage() {
   const { t } = useTranslation(['admin', 'common'])
   const { id } = useParams()
   const isNew = id === 'new' || !id
   const navigate = useNavigate()
   const [product, setProduct] = useState(emptyProduct)
-  const [tagsInput, setTagsInput] = useState('')
   const [loading, setLoading] = useState(!isNew)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState('')
+  const [fieldErrors, setFieldErrors] = useState({})
+  const [touched, setTouched] = useState({})
 
   const resolvedSlug = useMemo(
     () => slugify(product.id || product.title),
     [product.id, product.title],
   )
+
+  const canSubmit = useMemo(() => {
+    return (
+      Boolean(product.title?.trim()) &&
+      isValidUrl(product.url) &&
+      Object.keys(validateProduct(product, isNew, t)).length === 0
+    )
+  }, [product, isNew, t])
 
   useEffect(() => {
     if (isNew) return
@@ -75,9 +85,7 @@ export function ProductFormPage() {
       if (fetchError) {
         setError(fetchError.message)
       } else {
-        const mapped = mapProductFromDb(data)
-        setProduct(mapped)
-        setTagsInput(mapped.tags.join(', '))
+        setProduct(mapProductFromDb(data))
       }
       setLoading(false)
     }
@@ -87,26 +95,52 @@ export function ProductFormPage() {
 
   function updateField(field, value) {
     setProduct((prev) => ({ ...prev, [field]: value }))
+    setFieldErrors((prev) => {
+      if (!prev[field]) return prev
+      const next = { ...prev }
+      delete next[field]
+      return next
+    })
+  }
+
+  function markTouched(field) {
+    setTouched((prev) => ({ ...prev, [field]: true }))
+  }
+
+  function showError(field) {
+    return touched[field] ? fieldErrors[field] : undefined
   }
 
   async function handleSubmit(e) {
     e.preventDefault()
     setError('')
+
+    const errors = validateProduct(product, isNew, t)
+    setFieldErrors(errors)
+    setTouched({ title: true, url: true, id: true })
+
+    if (Object.keys(errors).length > 0) {
+      return
+    }
+
     setSubmitting(true)
+
+    let sortOrder = product.sortOrder
+    if (isNew) {
+      try {
+        sortOrder = await getNextSortOrder()
+      } catch (err) {
+        setError(err.message)
+        setSubmitting(false)
+        return
+      }
+    }
 
     const payload = mapProductToDb({
       ...product,
-      tags: parseList(tagsInput),
-      highlights: product.highlights.map((s) => s.trim()).filter(Boolean),
-      gradient: product.gradient || DEFAULT_GRADIENT,
+      sortOrder,
       id: isNew ? slugify(product.id || product.title) : product.id,
     })
-
-    if (!payload.id || !payload.title || !payload.description) {
-      setError(t('admin:products.requiredFields'))
-      setSubmitting(false)
-      return
-    }
 
     const { error: saveError } = isNew
       ? await supabase.from('products').insert(payload)
@@ -123,25 +157,21 @@ export function ProductFormPage() {
 
   if (loading) {
     return (
-      <div className="mx-auto max-w-6xl space-y-4 animate-pulse">
-        <div className="h-4 w-32 rounded-md bg-overlay" />
-        <div className="h-8 w-64 rounded-md bg-overlay" />
-        <div className="grid gap-4 lg:grid-cols-2">
-          <div className="space-y-4">
-            <div className="h-64 rounded-lg bg-overlay" />
-            <div className="h-48 rounded-lg bg-overlay" />
-          </div>
-          <div className="space-y-4">
-            <div className="h-48 rounded-lg bg-overlay" />
-            <div className="h-32 rounded-lg bg-overlay" />
-          </div>
+      <div className="mx-auto max-w-6xl animate-pulse">
+        <div className="mb-8 space-y-3">
+          <div className="h-4 w-32 rounded-md bg-overlay" />
+          <div className="h-8 w-64 rounded-md bg-overlay" />
+        </div>
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_280px]">
+          <div className="h-96 rounded-lg bg-overlay" />
+          <div className="h-72 rounded-lg bg-overlay" />
         </div>
       </div>
     )
   }
 
   return (
-    <div className="mx-auto pb-24">
+    <div className="mx-auto max-w-6xl pb-28">
       <header className="mb-8 space-y-4">
         <Link
           to="/admin/products"
@@ -164,289 +194,158 @@ export function ProductFormPage() {
         </div>
       </header>
 
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,360px)]">
+      <form onSubmit={handleSubmit}>
+        <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_280px]">
           <div className="space-y-6">
-            <FormSection
-              icon={Type}
-              title={t('admin:products.sections.basics.title')}
-              description={t('admin:products.sections.basics.description')}
-            >
-              {isNew && (
-                <Field
-                  label={t('admin:products.fields.id')}
-                  required
-                  hint={t('admin:products.fields.idHint')}
-                  htmlFor="product-id"
-                >
-                  <input
-                    id="product-id"
-                    type="text"
-                    value={product.id}
-                    onChange={(e) => updateField('id', e.target.value)}
-                    placeholder={t('admin:products.fields.idPlaceholder')}
-                    className={inputClassName}
-                    pattern="[a-z0-9-]*"
-                  />
-                  {resolvedSlug && (
-                    <p className="mt-1.5 text-label-sm text-muted">
-                      {t('admin:products.fields.willBeSavedAs')}{' '}
-                      <code className="rounded-sm bg-overlay px-1.5 py-0.5 text-foreground">
-                        {resolvedSlug}
-                      </code>
-                    </p>
-                  )}
-                </Field>
-              )}
-
+            <Card className="space-y-6 p-5 sm:p-6">
               <Field
                 label={t('admin:products.fields.title')}
                 required
+                hint={t('admin:products.form.titleHint')}
                 htmlFor="product-title"
+                error={showError('title')}
               >
                 <input
                   id="product-title"
                   type="text"
-                  required
+                  autoFocus={isNew}
                   value={product.title}
                   onChange={(e) => updateField('title', e.target.value)}
+                  onBlur={() => markTouched('title')}
                   placeholder={t('admin:products.fields.titlePlaceholder')}
-                  className={inputClassName}
+                  className={cn(inputClassName, showError('title') && 'border-red-500/50')}
+                  aria-invalid={Boolean(showError('title'))}
                 />
               </Field>
 
               <Field
-                label={t('admin:products.fields.shortDescription')}
+                label={t('admin:products.fields.appUrl')}
                 required
-                hint={t('admin:products.fields.shortDescriptionHint')}
-                htmlFor="product-description"
+                hint={t('admin:products.sections.links.description')}
+                htmlFor="product-url"
+                error={showError('url')}
               >
-                <textarea
-                  id="product-description"
-                  required
-                  rows={2}
-                  maxLength={280}
-                  value={product.description}
-                  onChange={(e) => updateField('description', e.target.value)}
-                  className={inputClassName}
-                />
-                <p className="mt-1 text-right text-label-sm text-muted">
-                  {product.description.length}/280
-                </p>
-              </Field>
-
-              <Field
-                label={t('admin:products.fields.longDescription')}
-                hint={t('admin:products.fields.longDescriptionHint')}
-                htmlFor="product-long-description"
-              >
-                <textarea
-                  id="product-long-description"
-                  rows={5}
-                  value={product.longDescription}
-                  onChange={(e) => updateField('longDescription', e.target.value)}
-                  placeholder={t('admin:products.fields.longDescriptionPlaceholder')}
-                  className={inputClassName}
-                />
-              </Field>
-            </FormSection>
-
-            <FormSection
-              icon={Settings2}
-              title={t('admin:products.sections.classification.title')}
-              description={t('admin:products.sections.classification.description')}
-            >
-              <div className="grid gap-5 sm:grid-cols-2">
-                <Field
-                  label={t('admin:products.fields.category')}
-                  required
-                  htmlFor="product-category"
-                >
+                <div className="flex gap-2">
                   <input
-                    id="product-category"
-                    type="text"
-                    required
-                    value={product.category}
-                    onChange={(e) => updateField('category', e.target.value)}
-                    placeholder={t('admin:products.fields.categoryPlaceholder')}
-                    className={inputClassName}
+                    id="product-url"
+                    type="url"
+                    inputMode="url"
+                    value={product.url}
+                    onChange={(e) => updateField('url', e.target.value)}
+                    onBlur={() => markTouched('url')}
+                    placeholder={t('admin:products.fields.appUrlPlaceholder')}
+                    className={cn(
+                      inputClassName,
+                      'min-w-0 flex-1',
+                      showError('url') && 'border-red-500/50',
+                    )}
+                    aria-invalid={Boolean(showError('url'))}
                   />
-                </Field>
-
-                <Field
-                  label={t('admin:products.fields.sortOrder')}
-                  hint={t('admin:products.fields.sortOrderHint')}
-                  htmlFor="product-sort"
-                >
-                  <input
-                    id="product-sort"
-                    type="number"
-                    min={0}
-                    value={product.sortOrder}
-                    onChange={(e) =>
-                      updateField('sortOrder', parseInt(e.target.value, 10) || 0)
-                    }
-                    className={inputClassName}
-                  />
-                </Field>
-              </div>
-
-              <div className="grid gap-5 sm:grid-cols-2">
-                <Field label={t('admin:products.fields.status')} htmlFor="product-status">
-                  <select
-                    id="product-status"
-                    value={product.status}
-                    onChange={(e) => updateField('status', e.target.value)}
-                    className={inputClassName}
-                  >
-                    <option value="live">{t('common:status.live')}</option>
-                    <option value="beta">{t('common:status.beta')}</option>
-                    <option value="internal">{t('common:status.internal')}</option>
-                  </select>
-                </Field>
-
-                <Field label={t('admin:products.fields.gridLayout')} htmlFor="product-layout">
-                  <select
-                    id="product-layout"
-                    value={product.layout}
-                    onChange={(e) => updateField('layout', e.target.value)}
-                    className={inputClassName}
-                  >
-                    <option value="featured">{t('admin:products.layout.featured')}</option>
-                    <option value="standard">{t('admin:products.layout.standard')}</option>
-                    <option value="wide">{t('admin:products.layout.wide')}</option>
-                    <option value="tall">{t('admin:products.layout.tall')}</option>
-                  </select>
-                </Field>
-              </div>
-
-              <div className="flex items-start justify-between gap-4 rounded-md border border-border bg-overlay-muted p-4">
-                <div>
-                  <p className="text-sm font-medium text-foreground">
-                    {t('admin:products.fields.featuredProduct')}
-                  </p>
-                  <p className="mt-0.5 text-sm text-muted">
-                    {t('admin:products.fields.featuredProductHint')}
-                  </p>
+                  {isValidUrl(product.url) && (
+                    <a
+                      href={product.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex shrink-0 items-center gap-1.5 rounded-md border border-border px-3 text-sm text-muted transition-colors hover:border-primary/40 hover:text-primary"
+                      title={t('admin:products.form.testUrl')}
+                    >
+                      <ExternalLink size={16} />
+                      <span className="hidden sm:inline">
+                        {t('admin:products.form.testUrl')}
+                      </span>
+                    </a>
+                  )}
                 </div>
-                <label className="flex shrink-0 cursor-pointer items-center gap-2 pt-0.5">
-                  <input
-                    type="checkbox"
-                    checked={product.featured}
-                    onChange={(e) => updateField('featured', e.target.checked)}
-                    className={checkboxClassName}
-                    aria-label={t('admin:products.fields.featuredProductAria')}
+              </Field>
+
+              <div className="border-t border-border-subtle pt-6">
+                <Field
+                  label={t('admin:products.sections.icon.title')}
+                  hint={t('admin:products.sections.icon.description')}
+                >
+                  <IconField
+                    value={product.iconUrl}
+                    onChange={(iconUrl) => updateField('iconUrl', iconUrl)}
                   />
-                </label>
+                </Field>
               </div>
-            </FormSection>
 
-            <FormSection
-              icon={Globe}
-              title={t('admin:products.sections.tagsHighlights.title')}
-              description={t('admin:products.sections.tagsHighlights.description')}
-            >
-              <Field
-                label={t('admin:products.fields.tags')}
-                hint={t('admin:products.fields.tagsHint')}
-                htmlFor="product-tags"
-              >
-                <input
-                  id="product-tags"
-                  type="text"
-                  value={tagsInput}
-                  onChange={(e) => setTagsInput(e.target.value)}
-                  placeholder={t('admin:products.fields.tagsPlaceholder')}
-                  className={inputClassName}
-                />
-              </Field>
+              {isNew && (
+                <details className="group border-t border-border-subtle pt-6">
+                  <summary className="flex cursor-pointer list-none items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-foreground [&::-webkit-details-marker]:hidden">
+                    <ChevronDown
+                      size={16}
+                      className="transition-transform group-open:rotate-180"
+                    />
+                    {t('admin:products.form.advanced')}
+                  </summary>
+                  <div className="mt-4">
+                    <Field
+                      label={t('admin:products.fields.id')}
+                      hint={t('admin:products.fields.idHint')}
+                      htmlFor="product-id"
+                      error={showError('id')}
+                    >
+                      <input
+                        id="product-id"
+                        type="text"
+                        value={product.id}
+                        onChange={(e) => updateField('id', e.target.value)}
+                        onBlur={() => markTouched('id')}
+                        placeholder={t('admin:products.fields.idPlaceholder')}
+                        className={cn(inputClassName, showError('id') && 'border-red-500/50')}
+                        pattern="[a-z0-9-]*"
+                      />
+                      {resolvedSlug && (
+                        <p className="mt-1.5 text-label-sm text-muted">
+                          {t('admin:products.fields.willBeSavedAs')}{' '}
+                          <code className="rounded-sm bg-overlay px-1.5 py-0.5 text-foreground">
+                            {resolvedSlug}
+                          </code>
+                        </p>
+                      )}
+                    </Field>
+                  </div>
+                </details>
+              )}
+            </Card>
 
-              <Field
-                label={t('admin:products.fields.highlights')}
-                hint={t('admin:products.fields.highlightsHint')}
+            {error && (
+              <p
+                role="alert"
+                className="rounded-md border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400"
               >
-                <EditableStringList
-                  items={product.highlights}
-                  onChange={(highlights) => updateField('highlights', highlights)}
-                  placeholder={t('admin:products.fields.highlightsPlaceholder')}
-                  addLabel={t('admin:products.fields.highlightsAdd')}
-                  emptyLabel={t('admin:products.fields.highlightsEmpty')}
-                />
-              </Field>
-            </FormSection>
+                {error}
+              </p>
+            )}
           </div>
 
-          <div className="space-y-6 lg:sticky lg:top-6">
-            <FormSection
-              icon={ImageIcon}
-              title={t('admin:products.sections.media.title')}
-              description={t('admin:products.sections.media.description')}
-            >
-              <ProductImageUploader
-                images={product.images ?? []}
-                onChange={(images) =>
-                  setProduct((prev) => ({
-                    ...prev,
-                    images,
-                    previewImage: images[0] ?? '',
-                  }))
-                }
-              />
-            </FormSection>
-
-            <FormSection
-              icon={Link2}
-              title={t('admin:products.sections.links.title')}
-              description={t('admin:products.sections.links.description')}
-            >
-              <Field label={t('admin:products.fields.liveUrl')} htmlFor="product-live-url">
-                <input
-                  id="product-live-url"
-                  type="url"
-                  value={product.liveUrl}
-                  onChange={(e) => updateField('liveUrl', e.target.value)}
-                  placeholder={t('admin:products.fields.liveUrlPlaceholder')}
-                  className={inputClassName}
-                />
-              </Field>
-
-              <Field label={t('admin:products.fields.repoUrl')} htmlFor="product-repo-url">
-                <input
-                  id="product-repo-url"
-                  type="url"
-                  value={product.repoUrl}
-                  onChange={(e) => updateField('repoUrl', e.target.value)}
-                  placeholder={t('admin:products.fields.repoUrlPlaceholder')}
-                  className={inputClassName}
-                />
-              </Field>
-            </FormSection>
-          </div>
+          <aside className="lg:sticky lg:top-6">
+            <ShortcutFormPreview product={product} />
+          </aside>
         </div>
 
-        {error && (
-          <p
-            role="alert"
-            className="rounded-md border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-400"
-          >
-            {error}
-          </p>
-        )}
-
-        <div className="sticky bottom-0 -mx-4 border-t border-border bg-background/95 px-4 py-4 backdrop-blur-sm lg:-mx-6 lg:px-6">
-          <div className="flex flex-wrap items-center justify-end gap-3">
-            <Link to="/admin/products">
-              <Button type="button" variant="ghost">
-                {t('common:actions.cancel')}
+        <div className="fixed inset-x-0 bottom-0 z-20 border-t border-border bg-background/95 backdrop-blur-sm lg:left-60">
+          <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-4 lg:px-6">
+            <p className="text-sm text-muted">
+              {canSubmit
+                ? t('admin:products.form.footerReady')
+                : t('admin:products.form.footerIncomplete')}
+            </p>
+            <div className="flex flex-wrap items-center gap-3">
+              <Link to="/admin/products">
+                <Button type="button" variant="ghost">
+                  {t('common:actions.cancel')}
+                </Button>
+              </Link>
+              <Button type="submit" disabled={submitting || !canSubmit}>
+                {submitting
+                  ? t('admin:products.saving')
+                  : isNew
+                    ? t('admin:products.createProduct')
+                    : t('admin:products.saveChanges')}
               </Button>
-            </Link>
-            <Button type="submit" disabled={submitting}>
-              {submitting
-                ? t('admin:products.saving')
-                : isNew
-                  ? t('admin:products.createProduct')
-                  : t('admin:products.saveChanges')}
-            </Button>
+            </div>
           </div>
         </div>
       </form>
@@ -454,26 +353,7 @@ export function ProductFormPage() {
   )
 }
 
-function FormSection({ icon: Icon, title, description, children }) {
-  return (
-    <Card className="overflow-hidden p-0">
-      <div className="border-b border-border-subtle px-5 py-4 sm:px-6">
-        <div className="flex items-start gap-3">
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-border bg-surface-elevated text-muted">
-            <Icon size={18} aria-hidden="true" />
-          </span>
-          <div>
-            <h3 className="text-sm font-semibold text-foreground">{title}</h3>
-            <p className="mt-0.5 text-sm text-muted">{description}</p>
-          </div>
-        </div>
-      </div>
-      <div className="space-y-5 px-5 py-5 sm:px-6">{children}</div>
-    </Card>
-  )
-}
-
-function Field({ label, required, hint, htmlFor, children, className }) {
+function Field({ label, required, hint, htmlFor, children, error, className }) {
   return (
     <div className={cn('space-y-1.5', className)}>
       <label htmlFor={htmlFor} className="block text-sm font-medium text-foreground">
@@ -482,6 +362,11 @@ function Field({ label, required, hint, htmlFor, children, className }) {
       </label>
       {hint && <p className="text-label-sm text-muted">{hint}</p>}
       {children}
+      {error && (
+        <p role="alert" className="text-sm text-red-400">
+          {error}
+        </p>
+      )}
     </div>
   )
 }

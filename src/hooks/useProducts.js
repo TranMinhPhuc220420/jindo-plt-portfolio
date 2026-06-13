@@ -3,8 +3,7 @@ import { supabase } from '../lib/supabase'
 import { mapProductFromDb } from '../lib/productMapper'
 
 export function useProducts() {
-  const [featuredProducts, setFeaturedProducts] = useState([])
-  const [bentoProducts, setBentoProducts] = useState([])
+  const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
@@ -21,14 +20,12 @@ export function useProducts() {
         return
       }
 
-      const products = (data ?? []).map(mapProductFromDb)
-      setFeaturedProducts(products.filter((p) => p.featured))
-      setBentoProducts(products.filter((p) => !p.featured))
+      setProducts((data ?? []).map(mapProductFromDb))
       setLoading(false)
     }
 
     fetchProducts()
   }, [])
 
-  return { featuredProducts, bentoProducts, loading, error }
+  return { products, loading, error }
 }

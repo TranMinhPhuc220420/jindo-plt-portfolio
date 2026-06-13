@@ -14,7 +14,6 @@ export function SiteHeader() {
 
   const navLinks = [
     { label: t('nav.products'), href: '#products' },
-    { label: t('nav.featured'), href: '#featured' },
     { label: t('nav.stack'), href: '#stack' },
     { label: t('nav.contact'), href: '#contact' },
   ]

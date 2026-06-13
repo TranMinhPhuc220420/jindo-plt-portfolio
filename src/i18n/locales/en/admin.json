@@ -22,30 +22,65 @@
     "error": "Login failed. Please try again."
   },
   "products": {
-    "description": "Manage products displayed on the public portfolio.",
+    "description": "Manage app shortcuts displayed on the homepage. Drag rows to change their order.",
+    "reorderHint": "Drag the handle to reorder shortcuts on the homepage.",
+    "reordering": "Saving new order…",
+    "reorderError": "Could not save the new order. Please try again.",
     "addProduct": "Add product",
     "empty": "No products yet.",
     "deleteConfirm": "Delete \"{{title}}\"? This cannot be undone.",
     "backToProducts": "Back to products",
     "newProduct": "New product",
     "editProduct": "Edit product",
-    "newDescription": "Add a product to your public portfolio.",
+    "newDescription": "Add an app shortcut to the homepage grid.",
     "editDescription": "Editing {{title}}",
-    "requiredFields": "ID, title, and description are required.",
+    "requiredFields": "ID, title, and app URL are required.",
     "saving": "Saving…",
     "createProduct": "Create product",
     "saveChanges": "Save changes",
+    "form": {
+      "titleHint": "Shown below the icon on the homepage grid.",
+      "testUrl": "Test",
+      "advanced": "Advanced options",
+      "decreaseSort": "Decrease sort order",
+      "increaseSort": "Increase sort order",
+      "footerReady": "Ready to save.",
+      "footerIncomplete": "Fill in the required fields to continue.",
+      "preview": {
+        "title": "Live preview",
+        "description": "How this shortcut appears on the homepage.",
+        "placeholderTitle": "App name"
+      },
+      "checklist": {
+        "heading": "Before saving",
+        "title": "App name added",
+        "url": "Valid app URL added",
+        "icon": "Icon added",
+        "optional": "optional",
+        "ready": "Looks good — you can save now."
+      },
+      "errors": {
+        "titleRequired": "App name is required.",
+        "urlRequired": "App URL is required.",
+        "urlInvalid": "Enter a valid URL starting with http:// or https://.",
+        "idInvalid": "ID can only contain lowercase letters, numbers, and hyphens."
+      }
+    },
     "table": {
+      "icon": "Icon",
       "title": "Title",
-      "category": "Category",
-      "status": "Status",
-      "featured": "Featured",
-      "actions": "Actions"
+      "url": "URL",
+      "actions": "Actions",
+      "dragProduct": "Drag to reorder {{title}}"
     },
     "sections": {
       "basics": {
         "title": "Basics",
-        "description": "Core copy shown on product cards and detail views."
+        "description": "Name and display order for the app shortcut."
+      },
+      "icon": {
+        "title": "Icon",
+        "description": "Upload an image or paste an external icon URL."
       },
       "classification": {
         "title": "Classification",
@@ -60,8 +95,8 @@
         "description": "First image is used as the cover in listings."
       },
       "links": {
-        "title": "Links",
-        "description": "Optional URLs for live demo and source code."
+        "title": "App link",
+        "description": "URL opened in a new tab when visitors click the shortcut."
       }
     },
     "fields": {
@@ -93,10 +128,20 @@
       "highlightsPlaceholder": "e.g. Real-time sync",
       "highlightsAdd": "Add highlight",
       "highlightsEmpty": "No highlights yet. Add key selling points for featured products.",
+      "appUrl": "App URL",
+      "appUrlPlaceholder": "https://app.example.com",
       "liveUrl": "Live URL",
       "liveUrlPlaceholder": "https://app.example.com",
       "repoUrl": "Repo URL",
       "repoUrlPlaceholder": "https://github.com/org/repo"
+    },
+    "iconField": {
+      "upload": "Upload",
+      "url": "URL",
+      "remove": "Remove icon",
+      "dropHint": "Click to upload an icon",
+      "formats": "PNG, JPG, WebP — max 5 MB",
+      "urlPlaceholder": "https://example.com/icon.png"
     },
     "layout": {
       "featured": "Featured",

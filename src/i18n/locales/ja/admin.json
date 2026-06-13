@@ -22,30 +22,65 @@
     "error": "ログインに失敗しました。もう一度お試しください。"
   },
   "products": {
-    "description": "公開ポートフォリオに表示される製品を管理します。",
+    "description": "ホームページのアプリショートカットを管理します。行をドラッグして並び順を変更できます。",
+    "reorderHint": "ハンドルをドラッグしてホームページの表示順を変更します。",
+    "reordering": "並び順を保存中…",
+    "reorderError": "並び順を保存できませんでした。もう一度お試しください。",
     "addProduct": "製品を追加",
     "empty": "製品がまだありません。",
     "deleteConfirm": "「{{title}}」を削除しますか？この操作は元に戻せません。",
     "backToProducts": "製品一覧に戻る",
     "newProduct": "新規製品",
     "editProduct": "製品を編集",
-    "newDescription": "公開ポートフォリオに製品を追加します。",
+    "newDescription": "ホームページのグリッドにアプリショートカットを追加します。",
     "editDescription": "{{title}} を編集中",
-    "requiredFields": "ID、タイトル、説明は必須です。",
+    "requiredFields": "ID、タイトル、アプリURLは必須です。",
     "saving": "保存中…",
     "createProduct": "製品を作成",
     "saveChanges": "変更を保存",
+    "form": {
+      "titleHint": "ホームページのグリッドでアイコンの下に表示されます。",
+      "testUrl": "テスト",
+      "advanced": "詳細オプション",
+      "decreaseSort": "並び順を下げる",
+      "increaseSort": "並び順を上げる",
+      "footerReady": "保存できます。",
+      "footerIncomplete": "必須項目を入力してください。",
+      "preview": {
+        "title": "ライブプレビュー",
+        "description": "ホームページでのショートカット表示です。",
+        "placeholderTitle": "アプリ名"
+      },
+      "checklist": {
+        "heading": "保存前の確認",
+        "title": "アプリ名を入力済み",
+        "url": "有効なアプリURLを入力済み",
+        "icon": "アイコンを追加済み",
+        "optional": "任意",
+        "ready": "問題ありません — 保存できます。"
+      },
+      "errors": {
+        "titleRequired": "アプリ名は必須です。",
+        "urlRequired": "アプリURLは必須です。",
+        "urlInvalid": "http:// または https:// で始まる有効なURLを入力してください。",
+        "idInvalid": "IDは小文字、数字、ハイフンのみ使用できます。"
+      }
+    },
     "table": {
+      "icon": "アイコン",
       "title": "タイトル",
-      "category": "カテゴリ",
-      "status": "ステータス",
-      "featured": "注目",
-      "actions": "操作"
+      "url": "URL",
+      "actions": "操作",
+      "dragProduct": "{{title}} の順序をドラッグ"
     },
     "sections": {
       "basics": {
         "title": "基本情報",
-        "description": "製品カードと詳細ページに表示されるコアコンテンツ。"
+        "description": "アプリショートカットの名前と表示順序。"
+      },
+      "icon": {
+        "title": "アイコン",
+        "description": "画像をアップロードするか、外部アイコンURLを貼り付けます。"
       },
       "classification": {
         "title": "分類",
@@ -60,8 +95,8 @@
         "description": "最初の画像が一覧のカバーとして使用されます。"
       },
       "links": {
-        "title": "リンク",
-        "description": "ライブデモとソースコードのオプションURL。"
+        "title": "アプリリンク",
+        "description": "訪問者がショートカットをクリックしたときに新しいタブで開くURL。"
       }
     },
     "fields": {
@@ -93,10 +128,20 @@
       "highlightsPlaceholder": "例: リアルタイム同期",
       "highlightsAdd": "ハイライトを追加",
       "highlightsEmpty": "ハイライトがまだありません。注目製品の主要なセールスポイントを追加してください。",
+      "appUrl": "アプリURL",
+      "appUrlPlaceholder": "https://app.example.com",
       "liveUrl": "ライブURL",
       "liveUrlPlaceholder": "https://app.example.com",
       "repoUrl": "リポジトリURL",
       "repoUrlPlaceholder": "https://github.com/org/repo"
+    },
+    "iconField": {
+      "upload": "アップロード",
+      "url": "URL",
+      "remove": "アイコンを削除",
+      "dropHint": "クリックしてアイコンをアップロード",
+      "formats": "PNG, JPG, WebP — 最大5 MB",
+      "urlPlaceholder": "https://example.com/icon.png"
     },
     "layout": {
       "featured": "注目",
