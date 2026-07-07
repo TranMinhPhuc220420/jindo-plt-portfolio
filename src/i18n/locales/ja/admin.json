@@ -114,7 +114,7 @@
       "title": "タイトル",
       "titlePlaceholder": "製品名",
       "shortDescription": "短い説明",
-      "shortDescriptionHint": "カードと一覧用の1〜2文。",
+      "shortDescriptionHint": "ホームページの製品名の下に表示されます。不要な場合は空欄のままにしてください。",
       "longDescription": "詳細説明",
       "longDescriptionHint": "注目製品パネル用の完全な概要。",
       "longDescriptionPlaceholder": "詳細ページ用の拡張説明…",

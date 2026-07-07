@@ -5,8 +5,9 @@ function getInitial(title) {
 }
 
 export function AppShortcutCard({ product }) {
-  const { title, iconUrl, url } = product
+  const { title, description, iconUrl, url } = product
   const hasUrl = Boolean(url && url !== '#')
+  const ariaLabel = description ? `${title} — ${description}` : title
 
   const content = (
     <>
@@ -29,9 +30,16 @@ export function AppShortcutCard({ product }) {
           </span>
         )}
       </div>
-      <span className="line-clamp-2 text-center text-sm font-medium text-foreground">
-        {title}
-      </span>
+      <div className="flex w-full flex-col items-center gap-1">
+        <span className="line-clamp-2 text-center text-sm font-medium text-foreground">
+          {title}
+        </span>
+        {description && (
+          <span className="line-clamp-2 text-center text-xs text-muted">
+            {description}
+          </span>
+        )}
+      </div>
     </>
   )
 
@@ -56,7 +64,7 @@ export function AppShortcutCard({ product }) {
       target="_blank"
       rel="noopener noreferrer"
       className={className}
-      aria-label={title}
+      aria-label={ariaLabel}
     >
       {content}
     </a>

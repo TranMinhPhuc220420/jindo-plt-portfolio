@@ -114,7 +114,7 @@
       "title": "Title",
       "titlePlaceholder": "Product name",
       "shortDescription": "Short description",
-      "shortDescriptionHint": "One or two sentences for cards and listings.",
+      "shortDescriptionHint": "Shown below the product name on the homepage. Leave blank if not needed.",
       "longDescription": "Long description",
       "longDescriptionHint": "Full overview for the featured product panel.",
       "longDescriptionPlaceholder": "Extended description for detail views…",

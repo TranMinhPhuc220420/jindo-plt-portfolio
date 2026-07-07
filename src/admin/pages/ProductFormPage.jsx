@@ -15,6 +15,7 @@ import { mapProductFromDb, mapProductToDb } from '../../lib/productMapper'
 const emptyProduct = {
   id: '',
   title: '',
+  description: '',
   iconUrl: '',
   url: '',
   sortOrder: 0,
@@ -149,11 +150,14 @@ export function ProductFormPage() {
       }
     }
 
-    const payload = mapProductToDb({
-      ...product,
-      sortOrder,
-      id: isNew ? slugify(product.id || product.title) : product.id,
-    })
+    const payload = mapProductToDb(
+      {
+        ...product,
+        sortOrder,
+        id: isNew ? slugify(product.id || product.title) : product.id,
+      },
+      { isNew },
+    )
 
     const { error: saveError } = isNew
       ? await supabase.from('products').insert(payload)
@@ -228,6 +232,21 @@ export function ProductFormPage() {
                   placeholder={t('admin:products.fields.titlePlaceholder')}
                   className={cn(inputClassName, showError('title') && 'border-red-500/50')}
                   aria-invalid={Boolean(showError('title'))}
+                />
+              </Field>
+
+              <Field
+                label={t('admin:products.fields.shortDescription')}
+                hint={t('admin:products.fields.shortDescriptionHint')}
+                htmlFor="product-description"
+              >
+                <textarea
+                  id="product-description"
+                  rows={3}
+                  value={product.description}
+                  onChange={(e) => updateField('description', e.target.value)}
+                  placeholder={t('admin:products.fields.shortDescription')}
+                  className={cn(inputClassName, 'resize-y min-h-[4.5rem]')}
                 />
               </Field>
 

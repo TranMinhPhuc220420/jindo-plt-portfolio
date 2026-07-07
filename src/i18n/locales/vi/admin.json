@@ -114,7 +114,7 @@
       "title": "Tiêu đề",
       "titlePlaceholder": "Tên sản phẩm",
       "shortDescription": "Mô tả ngắn",
-      "shortDescriptionHint": "Một hoặc hai câu cho thẻ và danh sách.",
+      "shortDescriptionHint": "Hiển thị dưới tên sản phẩm trên trang chủ. Để trống nếu không cần.",
       "longDescription": "Mô tả dài",
       "longDescriptionHint": "Tổng quan đầy đủ cho panel sản phẩm nổi bật.",
       "longDescriptionPlaceholder": "Mô tả chi tiết cho trang chi tiết…",

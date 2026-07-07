@@ -46,6 +46,7 @@ export function ShortcutFormPreview({ product }) {
           <AppShortcutCard
             product={{
               title: product.title?.trim() || t('products.form.preview.placeholderTitle'),
+              description: product.description?.trim() || undefined,
               iconUrl: product.iconUrl,
               url: hasUrl ? product.url : undefined,
             }}

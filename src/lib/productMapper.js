@@ -4,6 +4,7 @@ export function mapProductFromDb(row) {
   return {
     id: row.id,
     title: row.title,
+    description: row.description?.trim() || undefined,
     iconUrl: row.icon_url ?? row.images?.[0] ?? row.preview_image ?? undefined,
     url: row.live_url ?? undefined,
     sortOrder: row.sort_order ?? 0,
@@ -12,16 +13,24 @@ export function mapProductFromDb(row) {
   }
 }
 
-/** @param {ReturnType<typeof mapProductFromDb>} product */
-export function mapProductToDb(product) {
-  return {
-    id: product.id,
+/** @param {ReturnType<typeof mapProductFromDb>} product @param {{ isNew?: boolean }} [options] */
+export function mapProductToDb(product, { isNew = false } = {}) {
+  const managed = {
     title: product.title,
     icon_url: product.iconUrl || null,
     live_url: product.url || null,
     sort_order: product.sortOrder ?? 0,
     category_id: product.categoryId || null,
-    description: '',
+    description: product.description?.trim() || null,
+  }
+
+  if (!isNew) {
+    return managed
+  }
+
+  return {
+    id: product.id,
+    ...managed,
     status: 'live',
     tags: [],
     gradient: '',
